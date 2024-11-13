@@ -41,7 +41,7 @@ export class Rubis3D {
       0.1,
       1000
     );
-    this.camera.position.set(10, 5, 10);
+    this.camera.position.set(4, 4, 4);
     this.camera.lookAt(0, 0, 0);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(
@@ -84,12 +84,13 @@ export class Rubis3D {
   private createSmallCube(x: number, y: number, z: number): THREE.Mesh {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const materials = [
-      new THREE.MeshBasicMaterial({ color: 0xffffff }), // blanc
-      new THREE.MeshBasicMaterial({ color: 0xffff00 }), // rouge
-      new THREE.MeshBasicMaterial({ color: 0x0000ff }), // bleu
-      new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // orange
-      new THREE.MeshBasicMaterial({ color: 0xff8000 }), // vert
-      new THREE.MeshBasicMaterial({ color: 0xff0000 }), // jaune
+      new THREE.MeshBasicMaterial({ color: 0xff8000 }), // face 5 - orange
+      new THREE.MeshBasicMaterial({ color: 0xff0000 }), // face 6 - rouge
+
+      new THREE.MeshBasicMaterial({ color: 0xffffff }), // face 1 - blanc
+      new THREE.MeshBasicMaterial({ color: 0xffff00 }), // face 2 - jaune
+      new THREE.MeshBasicMaterial({ color: 0x0000ff }), // face 3 - bleu
+      new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // face 4 - vert
     ];
 
     const cube = new THREE.Mesh(geometry, materials);
