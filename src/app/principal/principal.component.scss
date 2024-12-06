@@ -1,0 +1,113 @@
+/* Global variables */
+$primary-color: #ff6b6b;
+$secondary-color: #1e272e;
+$background-color: #f7f9fc;
+$text-color: #2f3542;
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  height: 70vh;
+  text-align: center;
+
+  .hero-content {
+    max-width: 600px;
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+
+      .brand {
+        color: #ffe66d;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .cta-buttons {
+      margin-top: 2rem;
+
+      .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.btn-primary {
+          background: #ffe66d;
+          color: $secondary-color;
+          border: none;
+        }
+
+        &.btn-secondary {
+          background: none;
+          color: white;
+          border: 1px solid white;
+
+          &:hover {
+            background: white;
+            color: $secondary-color;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+/* Features Section */
+.features {
+  background-color: $background-color;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    color: $secondary-color;
+
+    .brand {
+      color: $primary-color;
+    }
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .feature-item {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      .icon {
+        font-size: 2rem;
+        color: $primary-color;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        color: $secondary-color;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: $text-color;
+      }
+    }
+  }
+}

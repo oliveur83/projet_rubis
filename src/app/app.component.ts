@@ -2,6 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Rubis3D } from '../rubis3D';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   isDropdownOpen = false;
 
+  constructor(private router: Router, private elementRef: ElementRef) {}
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -21,11 +23,20 @@ export class AppComponent {
     this.ismenu = !this.ismenu;
   }
   title = 'front_rubis';
-  constructor(private elementRef: ElementRef) {}
+
   ngAfterViewInit() {
     const container = this.elementRef.nativeElement.querySelector('#container');
 
     const threeJSUtils = new Rubis3D(container);
     threeJSUtils.init();
+  }
+  AlgoF2L() {
+    this.router.navigate(['/AlgoF2l']);
+  }
+  AlgoPLL() {
+    this.router.navigate(['/AlgoPLL']);
+  }
+  AlgoOLL() {
+    this.router.navigate(['/AlgoOLL']);
   }
 }

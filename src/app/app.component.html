@@ -1,11 +1,11 @@
 <!-- app.component.html -->
 
 <div class="header">
-    <div class="logo" (click)="menurubis()" >Mon Logo
+    <div class="logo" (click)="menurubis()" >3X3
         <div class="dromenu" *ngIf="ismenu">
-            <a href="#" class="dropdown-item">Connexion</a>
-            <a href="#" class="dropdown-item">Déconnexion</a>
-            <a href="#" class="dropdown-item">Mes algos</a>
+            <a  (click)="AlgoF2L()" class="dropdown-item">F2L</a>
+            <a (click)="AlgoPLL()"  class="dropdown-item">OLL</a>
+            <a (click)="AlgoOLL()" class="dropdown-item">PLL</a>
           </div>
     </div>
     <div class="account" (click)="toggleDropdown()">
@@ -20,5 +20,4 @@
     </div>
   </div>
   
-  <div id="container" style="border: 2px solid black; width: 20%; height: calc(30vh - 60px);"></div>
-  
+  <router-outlet></router-outlet>
