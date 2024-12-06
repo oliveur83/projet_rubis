@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Rubis3D } from '../../rubis3D';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-algo-pll',
   standalone: true,
@@ -12,7 +13,7 @@ export class AlgoPLLComponent {
   containers = Array.from({ length: 41 });
   private rubis3DInstances: Rubis3D[] = [];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private router: Router, private elementRef: ElementRef) {}
 
   ngAfterViewInit(): void {
     const containerElements =
@@ -30,6 +31,7 @@ export class AlgoPLLComponent {
   }
 
   voirPlus(index: number): void {
-    alert('Voir plus de contenu à venir !');
+    //alert('Voir plus de contenu à venir !');
+    this.router.navigate(['AlgoPlus/', index]);
   }
 }

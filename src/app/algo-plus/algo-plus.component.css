@@ -1,0 +1,113 @@
+/* Conteneur principal */
+.container {
+  flex-direction: column; 
+ /* Arrange les divs en colonne */
+  align-items: center;
+  width: 100%; /* Prend toute la largeur de l'écran */
+  padding: 20px;
+  box-sizing: border-box; /* Prend en compte le padding dans la largeur totale */
+}
+
+/* Scène 3D */
+.threejs-container {
+  width: 100%; /* Utilise toute la largeur de l'écran */
+  max-width: 100%; /* Pas de largeur maximale pour rester responsive */
+  height: 40vh; /* Ajuste la hauteur en fonction de la hauteur de la fenêtre */
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border: 2px solid #90caf9;
+  border-radius: 10px;
+
+  margin-bottom: 20px; /* Espace entre la scène et le tableau */
+  box-sizing: border-box; /* Prend en compte la bordure dans la largeur totale */
+}
+
+/* Tableau responsive */
+.table-responsive {
+  width: 100%; /* Prend toute la largeur de l'écran */
+  overflow-x: auto;
+  margin-top: 20px;
+  
+}
+/* Style général du tableau */
+#rankingTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+  margin: 0 auto;
+  background-color: #f4f4f9;
+  box-sizing: border-box;
+}
+
+/* En-tête du tableau */
+#rankingTable thead {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+}
+
+/* Style des cellules */
+#rankingTable th,
+#rankingTable td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Lignes alternées */
+#rankingTable tbody tr:nth-child(even) {
+  background-color: #e9f5f3;
+}
+
+/* Lignes de classement spécifiques */
+#rankingTable tbody tr:nth-child(1) {
+  background-color: #ffd700; /* Couleur dorée pour le premier */
+  color: #000;
+}
+
+#rankingTable tbody tr:nth-child(2) {
+  background-color: #c0c0c0; /* Couleur argentée pour le deuxième */
+  color: #000;
+}
+
+#rankingTable tbody tr:nth-child(3) {
+  background-color: #cd7f32; /* Couleur bronze pour le troisième */
+  color: #000;
+}
+
+/* Effet de survol */
+#rankingTable tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style pour la colonne de classement */
+.rank {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+  #rankingTable thead {
+    display: none;
+  }
+  #rankingTable tr {
+    display: block;
+    margin-bottom: 15px;
+  }
+  #rankingTable td {
+    display: block;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  #rankingTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+}

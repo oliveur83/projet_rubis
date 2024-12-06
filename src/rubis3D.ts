@@ -43,50 +43,45 @@ export class Rubis3D {
 
   constructor(container: HTMLElement) {
     this.container = container;
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'R') {
-        this.rotater(this.prime);
-      }
-      if (event.key === 'F') {
-        this.rotatef(this.prime);
-      }
-      if (event.key === 'B') {
-        this.rotateb(this.prime);
-      }
-      if (event.key === 'L') {
-        this.rotatel(this.prime);
-      }
-      if (event.key === 'U') {
-        this.rotateu(this.prime);
-      }
-      if (event.key === 'D') {
-        this.rotated(this.prime);
-      }
-      //------------------------
-      if (event.key === 'r') {
-        this.prime = true;
-        this.rotater(this.prime);
-      }
-      if (event.key === 'f') {
-        this.prime = true;
-        this.rotatef(this.prime);
-      }
-      if (event.key === 'b') {
-        this.prime = true;
-        this.rotateb(this.prime);
-      }
-      if (event.key === 'l') {
-        this.prime = true;
+    // Lier la méthode resizeRendererToDisplaySize au contexte de la classe
+    window.addEventListener(
+      'resize',
+      this.resizeRendererToDisplaySize.bind(this)
+    );
 
-        this.rotatel(this.prime);
-      }
-      if (event.key === 'u') {
-        this.prime = true;
-        this.rotateu(this.prime);
-      }
-      if (event.key === 'd') {
-        this.prime = true;
-        this.rotated(this.prime);
+    // Écoute des touches pour effectuer les rotations
+    window.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case 'R':
+        case 'r':
+          this.prime = event.key === 'r';
+          this.rotater(this.prime);
+          break;
+        case 'F':
+        case 'f':
+          this.prime = event.key === 'f';
+          this.rotatef(this.prime);
+          break;
+        case 'B':
+        case 'b':
+          this.prime = event.key === 'b';
+          this.rotateb(this.prime);
+          break;
+        case 'L':
+        case 'l':
+          this.prime = event.key === 'l';
+          this.rotatel(this.prime);
+          break;
+        case 'U':
+        case 'u':
+          this.prime = event.key === 'u';
+          this.rotateu(this.prime);
+          break;
+        case 'D':
+        case 'd':
+          this.prime = event.key === 'd';
+          this.rotated(this.prime);
+          break;
       }
     });
   }
@@ -101,23 +96,26 @@ export class Rubis3D {
     );
     this.camera.position.set(6, 6, 6);
     this.camera.lookAt(0, 0, 0);
+
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(
       this.container.clientWidth,
       this.container.clientHeight
     );
     this.container.appendChild(this.renderer.domElement);
+
     this.materials = [
       new THREE.MeshBasicMaterial({ color: 0xff8000 }), // face 5 - orange
       new THREE.MeshBasicMaterial({ color: 0xff0000 }), // face 6 - rouge
-
       new THREE.MeshBasicMaterial({ color: 0xffffff }), // face 1 - blanc
       new THREE.MeshBasicMaterial({ color: 0xffff00 }), // face 2 - jaune
       new THREE.MeshBasicMaterial({ color: 0x0000ff }), // face 3 - bleu
       new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // face 4 - vert
     ];
+
     this.cubeGeometry = new THREE.BoxGeometry(1.9, 1.9, 1.9);
 
+    // Créer les groupes de rotation
     this.rotatingGroupR = new THREE.Group();
     this.rotatingGroupF = new THREE.Group();
     this.rotatingGroupB = new THREE.Group();
@@ -140,8 +138,21 @@ export class Rubis3D {
         }
       }
     }
+
     this.animate();
   }
+
+  resizeRendererToDisplaySize() {
+    const container = document.querySelector('.threejs-container');
+    const width = container!.clientWidth;
+    const height = container!.clientHeight;
+    this.renderer.setSize(width, height);
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    console.log('toto');
+  }
+
   rotater(prime: boolean) {
     this.rotaterr = true;
     this.prime = prime;
