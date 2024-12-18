@@ -1,21 +1,35 @@
 <!-- app.component.html -->
 
 <div class="header">
-    <div class="logo" (click)="menurubis()" >3X3
-        <div class="dromenu" *ngIf="ismenu">
-            <a  (click)="AlgoF2L()" class="dropdown-item">F2L</a>
-            <a (click)="AlgoPLL()"  class="dropdown-item">OLL</a>
-            <a (click)="AlgoOLL()" class="dropdown-item">PLL</a>
-          </div>
+  <div class="menu-cube">
+    <div class="logo" (click)="toggleMenu()">
+      Menu Cube
+      <div class="dropdown" *ngIf="ismenu">
+        <!-- Menu principal 3x3 -->
+        <div class="submenu">
+          <a (click)="Chrono()" class="dropdown-item">PLL</a>
+       
+          <div class="submenu-title">3x3</div>
+          <a (click)="debutant()" class="dropdown-item">debutant</a>
+          <a (click)="AlgoF2L()" class="dropdown-item">F2L</a>
+          <a (click)="AlgoOLL()" class="dropdown-item">OLL</a>
+          <a (click)="AlgoPLL()" class="dropdown-item">PLL</a>
+        </div>
+        
+        <!-- Menu principal 4x4 -->
+    
+      </div>
     </div>
+  </div>
+  
     <div class="account" (click)="toggleDropdown()">
       <span>Compte</span>
       <i class="account-icon">👤</i>
       <!-- Menu déroulant -->
       <div class="dropdown" *ngIf="isDropdownOpen">
-        <a href="#" class="dropdown-item">Connexion</a>
+        <a (click)="Connexion()"  class="dropdown-item">Connexion</a>
         <a href="#" class="dropdown-item">Déconnexion</a>
-        <a href="#" class="dropdown-item">Mes algos</a>
+        <a (click)="algoprofil()" class="dropdown-item">Mes algos</a>
       </div>
     </div>
   </div>

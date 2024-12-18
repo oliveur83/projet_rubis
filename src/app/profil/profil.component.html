@@ -1,0 +1,46 @@
+<div class="profile-container">
+    <!-- Section d'informations personnelles -->
+    <div class="profile-header">
+      <img src="assets/profile-pic.png" alt="Photo de profil" class="profile-pic">
+      <h1>{{ nomParticipant }}</h1>
+      <p>{{ bioParticipant }}</p>
+    </div>
+  
+    <!-- Records personnels -->
+    <div class="records-section">
+      <h2>Records Personnels</h2>
+      <table class="records-table">
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Record Single</th>
+            <th>Record Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of records">
+            <td>{{ record.categorie }}</td>
+            <td>{{ record.single }}</td>
+            <td>{{ record.average }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Graphiques -->
+    <div class="charts-section">
+      <h2>Évolution des Temps</h2>
+      <canvas id="progressChart" width="400" height="200"></canvas>
+    </div>
+  
+    <!-- Classement -->
+    <div class="ranking-section">
+      <h2>Classement</h2>
+      <ul>
+        <li>National : {{ classement.national }}</li>
+        <li>Régional : {{ classement.regional }}</li>
+        <li>Mondial : {{ classement.mondial }}</li>
+      </ul>
+    </div>
+  </div>
+  

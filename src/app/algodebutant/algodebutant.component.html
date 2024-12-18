@@ -1,1 +1,40 @@
-<p>algodebutant works!</p>
+<div class="rubik-tutorial">
+    <header class="header">
+      <h1>Apprenez à résoudre un Rubik's Cube</h1>
+      <p>Suivez notre guide étape par étape pour devenir un pro du Rubik's Cube !</p>
+    </header>
+  
+    <main class="content">
+      <!-- Étapes du tutoriel -->
+      <div class="steps-container">
+        <ul class="steps">
+          <li *ngFor="let step of steps; let i = index" (click)="selectStep(i)" [class.active]="selectedStep === i">
+            <span>{{ i + 1 }}</span> {{ step.title }}
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Détails de l'étape sélectionnée -->
+      <div class="step-details" *ngIf="selectedStep !== null">
+        <h2>{{ steps[selectedStep].title }}</h2>
+        <p>{{ steps[selectedStep].description }}</p>
+  
+        <!-- Illustration de l'étape -->
+        <div class="illustration">
+            <img [src]="steps[selectedStep].image" alt="Illustration de l'étape">
+          </div>
+          
+      </div>
+  
+      <!-- Commandes interactives -->
+      <div class="controls">
+        <button (click)="previousStep()" [disabled]="selectedStep === 0">Étape précédente</button>
+        <button (click)="nextStep()" [disabled]="selectedStep === steps.length - 1">Étape suivante</button>
+      </div>
+    </main>
+  
+    <footer class="footer">
+      <p>Prêt à relever le défi ? Pratiquez et devenez un expert !</p>
+    </footer>
+  </div>
+  

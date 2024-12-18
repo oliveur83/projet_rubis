@@ -1,0 +1,88 @@
+.rubik-tutorial {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .header {
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .steps-container {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+  }
+
+  .steps li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .steps li:hover {
+    background-color: #f0f0f0;
+  }
+
+  .steps li.active {
+    background-color: #ffcc00;
+    color: white;
+  }
+
+  .step-details {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+
+  .illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .controls {
+    margin-top: 20px;
+  }
+
+  .controls button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #ff6600;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .controls button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+
+  .controls button:hover:not(:disabled) {
+    background-color: #e65c00;
+  }
+
+  .footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #555;
+  }

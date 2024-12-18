@@ -30,13 +30,31 @@ export class AppComponent {
     const threeJSUtils = new Rubis3D(container);
     threeJSUtils.init();
   }
+  toggleMenu() {
+    this.ismenu = !this.ismenu;
+  }
   AlgoF2L() {
     this.router.navigate(['/AlgoF2l']);
+  }
+  Connexion() {
+    console.log('bien dans la fonction ');
+    this.router.navigate(['/Connexion']);
   }
   AlgoPLL() {
     this.router.navigate(['/AlgoPLL']);
   }
+  debutant() {
+    this.router.navigate(['/Debutant']);
+    console.log('toto');
+  }
+  algoprofil() {
+    this.router.navigate(['/AlgoProfil']);
+    console.log('toto');
+  }
   AlgoOLL() {
     this.router.navigate(['/AlgoOLL']);
+  }
+  Chrono() {
+    this.router.navigate(['/Chrono']);
   }
 }
