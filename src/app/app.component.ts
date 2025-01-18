@@ -33,9 +33,7 @@ export class AppComponent {
   toggleMenu() {
     this.ismenu = !this.ismenu;
   }
-  AlgoF2L() {
-    this.router.navigate(['/AlgoF2l']);
-  }
+
   Connexion() {
     console.log('bien dans la fonction ');
     this.router.navigate(['/Connexion']);
@@ -43,18 +41,36 @@ export class AppComponent {
   AlgoPLL() {
     this.router.navigate(['/AlgoPLL']);
   }
+  AlgoF2L() {
+    this.router.navigate(['/AlgoF2l']);
+  }
   debutant() {
     this.router.navigate(['/Debutant']);
     console.log('toto');
+  }
+
+  AlgoOLL() {
+    this.router.navigate(['/AlgoOLL']);
   }
   algoprofil() {
     this.router.navigate(['/AlgoProfil']);
     console.log('toto');
   }
-  AlgoOLL() {
-    this.router.navigate(['/AlgoOLL']);
-  }
   Chrono() {
     this.router.navigate(['/Chrono']);
+  }
+  AlgoPLLblind() {
+    this.router.navigate(['/AlgoPLL']);
+  }
+  AlgoF2Lblind() {
+    this.router.navigate(['/AlgoF2l']);
+  }
+  debutantblind() {
+    this.router.navigate(['/Debutant']);
+    console.log('toto');
+  }
+
+  AlgoOLLblind() {
+    this.router.navigate(['/AlgoOLL']);
   }
 }

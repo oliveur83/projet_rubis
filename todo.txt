@@ -1,0 +1,37 @@
+1 janvier :
+faire menu 3x3 4X4 et 5X5 blind ✓
+2 janvier :
+faire test json serveur ✓
+3 janvier :
+faire la connexion  ✓
+4 janvier 
+refaire les sous menu ✓
+5 janvier 
+mettre directemetn les cas 
+6 janvier 
+gerer bien les cube 3D 
+7 janvier
+avancer la methode debutant
+8 janvier 
+bloquer le bouton lors de lanimation 
+9 janvier 
+OLL  8 string ✓
+10 janvier 
+PLL  16 string✓
+11 janvier
+OLL 10 string ✓
+12 janvier 
+OLL 10 string✓
+13 janvier 
+oll 10 string ✓
+14 janvier 
+fin oll ✓
+15 janvier 
+faire F2l debutant 
+16 janvier 
+faire croix blance debutant
+17 janvier 
+faire coin blanc debutant 
+
+
+https://www.cube-store.fr/blogs/blog-rubiks-cubes/comment-resoudre-un-rubiks-cube-3x3#

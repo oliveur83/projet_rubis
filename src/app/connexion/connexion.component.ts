@@ -1,39 +1,28 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service'; // Service d'authentification
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.css',
 })
 export class ConnexionComponent {
-  loginForm: FormGroup;
-
+  username: string = '';
+  password: string = '';
   constructor(
-    private router: Router,
-    private formBuilder: FormBuilder // private authService: AuthService, // private router: Router, // private http: HttpClient
-  ) {
-    this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-    console.log();
-  }
+    private router: Router
+  ) // private authService: AuthService, // private router: Router, // private http: HttpClient
+  {}
 
   onSubmit() {
-    console.log('jetaime');
-    this.router.navigate(['/profil']);
+    if (this.username == 'admin' && this.password == 'admin') {
+      this.router.navigate(['/profil']);
+    } else {
+      console.log('Le formulaire est invalide');
+    }
   }
 }

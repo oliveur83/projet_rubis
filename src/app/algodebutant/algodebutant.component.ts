@@ -15,38 +15,58 @@ export class AlgodebutantComponent {
       description:
         'Familiarisez-vous avec les faces, les couleurs et les mouvements de base.',
       image: 'assets/mouvement.png',
+      image2: '',
     },
     {
       title: 'Faire la croix blanche',
       description: 'Apprenez à résoudre la croix blanche sur une face.',
-      image: 'assets/images/step2.png',
+      image: 'assets/croix_blanche.jpg',
+      image2: 'assets/croix_blanche2.jpg',
     },
     {
       title: 'Résoudre les coins blancs',
       description:
         'Positionnez les coins blancs pour compléter la première face.',
-      image: 'assets/images/step3.png',
+      image: 'assets/coin_blanc.jpg',
+      image2: '',
     },
     {
       title: 'Résoudre la deuxième couronne',
       description: 'Placez correctement les arêtes du milieu.',
-      image: 'assets/images/step4.png',
+      image: 'assets/deuxieme_couronne.jpg',
+      image2: '',
     },
     {
       title: 'Faire la croix jaune',
       description: 'Créez une croix sur la face jaune.',
-      image: 'assets/images/step5.png',
+      image: 'assets/croix_jaune.png',
+      image2: '',
+    },
+    {
+      title: 'Positionner les arete jaunes',
+      description:
+        'Ajustez les coins jaunes pour finaliser la face supérieure.',
+      image: 'assets/deplacement_arete_jaune.jpg',
+      image2: '',
+    },
+    {
+      title: 'Aligner les arêtes',
+      description: 'Terminez le cube en alignant les arêtes restantes.',
+      image: 'assets/deplacement_de_coin.jpg',
+      image2: '',
     },
     {
       title: 'Positionner les coins jaunes',
       description:
         'Ajustez les coins jaunes pour finaliser la face supérieure.',
-      image: 'assets/images/step6.png',
+      image: 'assets/deplacement_de_coin.jpg',
+      image2: '',
     },
     {
-      title: 'Aligner les arêtes',
+      title: 'orienté les coin jaune ',
       description: 'Terminez le cube en alignant les arêtes restantes.',
-      image: 'assets/images/step7.png',
+      image: 'assets/oriente les coins jaune .jpg',
+      image2: '',
     },
   ];
 

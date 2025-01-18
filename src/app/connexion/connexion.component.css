@@ -90,6 +90,11 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.error {
+  color: red;
+  font-size: 9em;
+  margin-top: 5em;
+}
 
 button:hover {
   background-color: #42a5f5;
