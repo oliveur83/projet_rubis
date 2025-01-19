@@ -27,11 +27,22 @@ oll 10 string ✓
 14 janvier 
 fin oll ✓
 15 janvier 
-faire F2l debutant 
+faire F2l debutant ✓
 16 janvier 
-faire croix blance debutant
+faire croix blance debutant✓
 17 janvier 
-faire coin blanc debutant 
+faire coin blanc debutant ✓
+18 janvier 
+2deuxieme courone debutant ✓
+19 janvier 
+croix jaune debutant ✓
+20 janvier 
+croix bien faite debutant ✓
+21 janvier 
+deplacement coin jaunedebutant ✓
+22 janvier 
+orientation coin jaune debutant ✓
+23 janvier 
 
 
 https://www.cube-store.fr/blogs/blog-rubiks-cubes/comment-resoudre-un-rubiks-cube-3x3#

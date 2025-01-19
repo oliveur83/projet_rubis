@@ -65,7 +65,7 @@ export class AlgodebutantComponent {
     {
       title: 'orienté les coin jaune ',
       description: 'Terminez le cube en alignant les arêtes restantes.',
-      image: 'assets/oriente les coins jaune .jpg',
+      image: 'assets/orientation_coin_jaune .jpg',
       image2: '',
     },
   ];
