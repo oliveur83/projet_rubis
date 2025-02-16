@@ -13,10 +13,18 @@ import { CommonModule } from '@angular/common';
 export class AlgoPlusComponent {
   index!: number;
   algorithms = [
-    { sequence: "R U R' U'", creator: 'Olivier', likes: 120 },
-    { sequence: "F R U R' U' F'", creator: 'Mathieu', likes: 200 },
-    { sequence: "R U2 R2 U' R2 U' R2 U2 R", creator: 'Luc', likes: 180 },
+    { rank: 1, name: 'Algorithme A', creator: 'Créateur X', likes: 150 },
+    { rank: 2, name: 'Algorithme B', creator: 'Créateur Y', likes: 120 },
+    { rank: 3, name: 'Algorithme C', creator: 'Créateur Z', likes: 100 },
+    { rank: 4, name: 'Algorithme D', creator: 'Créateur W', likes: 90 },
+    { rank: 5, name: 'Algorithme E', creator: 'Créateur V', likes: 85 },
+    { rank: 6, name: 'Algorithme F', creator: 'Créateur U', likes: 80 },
+    { rank: 7, name: 'Algorithme G', creator: 'Créateur T', likes: 75 },
+    { rank: 8, name: 'Algorithme H', creator: 'Créateur S', likes: 70 },
+    { rank: 9, name: 'Algorithme I', creator: 'Créateur R', likes: 65 },
+    { rank: 10, name: 'Algorithme J', creator: 'Créateur Q', likes: 60 },
   ];
+
   constructor(private route: ActivatedRoute, private elementRef: ElementRef) {}
   ngAfterViewInit(): void {
     const containerElements =

@@ -11,35 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="rank">1</td>
-          <td>Algorithme A</td>
-          <td>Créateur X</td>
-          <td>150</td>
-        </tr>
-        <tr>
-          <td class="rank">2</td>
-          <td>Algorithme B</td>
-          <td>Créateur Y</td>
-          <td>120</td>
-        </tr>
-        <tr>
-          <td class="rank">3</td>
-          <td>Algorithme C</td>
-          <td>Créateur Z</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <td class="rank">4</td>
-          <td>Algorithme D</td>
-          <td>Créateur W</td>
-          <td>90</td>
-        </tr>
-        <tr>
-          <td class="rank">5</td>
-          <td>Algorithme E</td>
-          <td>Créateur V</td>
-          <td>85</td>
+        <tr *ngFor="let algo of algorithms">
+          <td class="rank">{{ algo.rank }}</td>
+          <td>{{ algo.name }}</td>
+          <td>{{ algo.creator }}</td>
+          <td>{{ algo.likes }}</td>
         </tr>
       </tbody>
     </table>
