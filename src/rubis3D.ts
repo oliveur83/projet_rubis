@@ -1,4 +1,17 @@
 import * as THREE from 'three';
+type ActionKey =
+  | 'R'
+  | 'L'
+  | 'U'
+  | 'F'
+  | 'D'
+  | 'B'
+  | 'r'
+  | 'l'
+  | 'u'
+  | 'f'
+  | 'd'
+  | 'b';
 
 export class Rubis3D {
   scene!: THREE.Scene;
@@ -8,38 +21,76 @@ export class Rubis3D {
   cubeGeometry: THREE.BoxGeometry | undefined;
   cubes: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial[]>[] = [];
   container: HTMLElement;
-  rotatingGroupR!: THREE.Group;
-  rotatingGroupF!: THREE.Group;
-  rotatingGroupL!: THREE.Group;
-  rotatingGroupB!: THREE.Group;
-  rotatingGroupU!: THREE.Group;
-  rotatingGroupD!: THREE.Group;
+
+  Rotating_Group_R!: THREE.Group;
+  Rotatin_Group_F!: THREE.Group;
+  Rotatin_Group_L!: THREE.Group;
+  Rotatin_Group_B!: THREE.Group;
+  Rotatin_Group_U!: THREE.Group;
+  Rotatin_Group_D!: THREE.Group;
+
   rotationAngleR = 0;
   rotationAngleL = 0;
   rotationAngleB = 0;
   rotationAngleF = 0;
   rotationAngleU = 0;
   rotationAngleD = 0;
-  isRotationRComplete = false;
-  isRotationFComplete = false;
-  isRotationLComplete = false;
-  isRotationBComplete = false;
-  isRotationUComplete = false;
-  isRotationDComplete = false;
-  varvar = false;
-  ror = false;
-  rorf = false;
-  rorl = false;
-  rorb = false;
-  roru = false;
-  rord = false;
-  rotaterr = false;
-  rotateff = false;
-  rotatebb = false;
-  rotatell = false;
-  rotateuu = false;
-  rotatedd = false;
+
+  is_Rotation_R_Complete = false;
+  is_Rotation_F_Complete = false;
+  is_Rotation_L_Complete = false;
+  is_Rotation_B_Complete = false;
+  is_Rotation_U_Complete = false;
+  is_Rotation_D_Complete = false;
+
+  Flag_Rotation_R_Encours = false;
+  Flag_Rotation_F_Encours = false;
+  Flag_Rotation_L_Encours = false;
+  Flag_Rotation_B_Encours = false;
+  Flag_Rotation_U_Encours = false;
+  Flag_Rotation_D_Encours = false;
+  flag_ajout_groupe_R = false;
+  Flag_Ajout_Groupe_F = false;
+  Flag_Ajout_Groupe_B = false;
+  Flag_Ajout_Groupe_L = false;
+  Flag_Ajout_Groupe_U = false;
+  Flag_Ajout_Groupe_D = false;
   prime = false;
+  // variable pour n
+  blocage_animation = false;
+  indice_recuperation_liste = 0;
+  titi: ActionKey[] = [
+    'R',
+    'U',
+    'r',
+    'u',
+    'r',
+    'f',
+    'R',
+    'R',
+    'u',
+    'r',
+    'u',
+    'R',
+    'U',
+    'r',
+    'F',
+  ];
+
+  actions: { [key in ActionKey]: () => void } = {
+    R: () => this.configuration_rotation_R(false),
+    L: () => this.Configuration_Rotation_L(false),
+    U: () => this.Configuration_Rotation_U(false),
+    F: () => this.Configuration_Rotation_F(false),
+    D: () => this.Configuration_Rotation_D(false),
+    B: () => this.Configuration_Rotation_B(false),
+    r: () => this.configuration_rotation_R(true),
+    l: () => this.Configuration_Rotation_L(true),
+    u: () => this.Configuration_Rotation_U(true),
+    f: () => this.Configuration_Rotation_F(true),
+    d: () => this.Configuration_Rotation_D(true),
+    b: () => this.Configuration_Rotation_B(true),
+  };
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -51,37 +102,48 @@ export class Rubis3D {
 
     // Écoute des touches pour effectuer les rotations
     window.addEventListener('keydown', (event) => {
-      switch (event.key) {
-        case 'R':
-        case 'r':
-          this.prime = event.key === 'r';
-          this.rotater(this.prime);
-          break;
-        case 'F':
-        case 'f':
-          this.prime = event.key === 'f';
-          this.rotatef(this.prime);
-          break;
-        case 'B':
-        case 'b':
-          this.prime = event.key === 'b';
-          this.rotateb(this.prime);
-          break;
-        case 'L':
-        case 'l':
-          this.prime = event.key === 'l';
-          this.rotatel(this.prime);
-          break;
-        case 'U':
-        case 'u':
-          this.prime = event.key === 'u';
-          this.rotateu(this.prime);
-          break;
-        case 'D':
-        case 'd':
-          this.prime = event.key === 'd';
-          this.rotated(this.prime);
-          break;
+      if (!this.blocage_animation) {
+        switch (event.key) {
+          case 'j':
+            this.Recuperation_liste(this.titi);
+            break;
+          case 'R':
+          case 'r':
+            this.blocage_animation = true;
+            this.prime = event.key === 'r';
+            this.configuration_rotation_R(this.prime);
+            break;
+          case 'F':
+          case 'f':
+            this.blocage_animation = true;
+            this.prime = event.key === 'f';
+            this.Configuration_Rotation_F(this.prime);
+            break;
+          case 'B':
+          case 'b':
+            this.blocage_animation = true;
+            this.prime = event.key === 'b';
+            this.Configuration_Rotation_B(this.prime);
+            break;
+          case 'L':
+          case 'l':
+            this.blocage_animation = true;
+            this.prime = event.key === 'l';
+            this.Configuration_Rotation_L(this.prime);
+            break;
+          case 'U':
+          case 'u':
+            this.blocage_animation = true;
+            this.prime = event.key === 'u';
+            this.Configuration_Rotation_U(this.prime);
+            break;
+          case 'D':
+          case 'd':
+            this.blocage_animation = true;
+            this.prime = event.key === 'd';
+            this.Configuration_Rotation_D(this.prime);
+            break;
+        }
       }
     });
   }
@@ -116,12 +178,12 @@ export class Rubis3D {
     this.cubeGeometry = new THREE.BoxGeometry(1.9, 1.9, 1.9);
 
     // Créer les groupes de rotation
-    this.rotatingGroupR = new THREE.Group();
-    this.rotatingGroupF = new THREE.Group();
-    this.rotatingGroupB = new THREE.Group();
-    this.rotatingGroupL = new THREE.Group();
-    this.rotatingGroupU = new THREE.Group();
-    this.rotatingGroupD = new THREE.Group();
+    this.Rotating_Group_R = new THREE.Group();
+    this.Rotatin_Group_F = new THREE.Group();
+    this.Rotatin_Group_B = new THREE.Group();
+    this.Rotatin_Group_L = new THREE.Group();
+    this.Rotatin_Group_U = new THREE.Group();
+    this.Rotatin_Group_D = new THREE.Group();
 
     const spacing = 2;
     for (let x = 0; x < 3; x++) {
@@ -150,55 +212,81 @@ export class Rubis3D {
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    console.log('toto');
   }
 
-  rotater(prime: boolean) {
-    this.rotaterr = true;
+  configuration_rotation_R(prime: boolean) {
+    this.flag_ajout_groupe_R = true;
+    this.prime = prime;
+    this.blocage_animation = true;
+  }
+  Configuration_Rotation_F(prime: boolean) {
+    this.Flag_Ajout_Groupe_F = true;
     this.prime = prime;
   }
-  rotatef(prime: boolean) {
-    this.rotateff = true;
+  Configuration_Rotation_L(prime: boolean) {
+    this.Flag_Ajout_Groupe_L = true;
     this.prime = prime;
   }
-  rotatel(prime: boolean) {
-    this.rotatell = true;
+  Configuration_Rotation_B(prime: boolean) {
+    this.Flag_Ajout_Groupe_B = true;
     this.prime = prime;
   }
-  rotateb(prime: boolean) {
-    this.rotatebb = true;
+  Configuration_Rotation_U(prime: boolean) {
+    this.Flag_Ajout_Groupe_U = true;
     this.prime = prime;
   }
-  rotateu(prime: boolean) {
-    this.rotateuu = true;
+  Configuration_Rotation_D(prime: boolean) {
+    this.Flag_Ajout_Groupe_D = true;
     this.prime = prime;
   }
-  rotated(prime: boolean) {
-    this.rotatedd = true;
-    this.prime = prime;
+
+  Recuperation_liste(toto: ActionKey[]) {
+    let i = 0;
+    const next = () => {
+      if (i < toto.length) {
+        console.log('tu rentres là ??', this.blocage_animation);
+        if (!this.blocage_animation) {
+          console.log('tu rentres', i);
+          this.actions[toto[i]](); // Exécute ton action
+          // Appelle animate ici si nécessaire
+          this.animate(); // Si besoin explicite
+          this.animate();
+        }
+        i++;
+        console.log('tour');
+        setTimeout(next, 500); // Laisse le temps à Angular de détecter les changements
+      }
+    };
+    next(); // Démarre la boucle
   }
   animate() {
-    if (!this.isRotationRComplete && this.ror) {
+    //mise en palce de la rotation
+    if (!this.is_Rotation_R_Complete && this.Flag_Rotation_R_Encours) {
+      // if c'est égale a R
       if (this.rotationAngleR > -Math.PI / 2 && !this.prime) {
         this.rotationAngleR -= 0.04;
         if (this.rotationAngleR < -Math.PI / 2) {
-          this.rotatingGroupR.rotation.x = -Math.PI / 2;
+          this.Rotating_Group_R.rotation.x = -Math.PI / 2;
         } else {
-          this.rotatingGroupR.rotation.x = this.rotationAngleR;
+          this.Rotating_Group_R.rotation.x = this.rotationAngleR;
         }
-      } else if (this.rotationAngleR < Math.PI / 2 && this.prime) {
+      }
+      // if c'est égale a R'
+      else if (this.rotationAngleR < Math.PI / 2 && this.prime) {
         this.rotationAngleR += 0.04;
         if (this.rotationAngleR > Math.PI / 2) {
-          this.rotatingGroupR.rotation.x = Math.PI / 2;
+          this.Rotating_Group_R.rotation.x = Math.PI / 2;
         } else {
-          this.rotatingGroupR.rotation.x = this.rotationAngleR;
+          this.Rotating_Group_R.rotation.x = this.rotationAngleR;
         }
-      } else {
-        this.isRotationRComplete = true;
-        this.scene.remove(this.rotatingGroupR);
-        this.rotatingGroupR.updateMatrixWorld();
-
-        this.rotatingGroupR.children.forEach((child) => {
+      }
+      // sinon c'est terminé
+      else {
+        this.is_Rotation_R_Complete = true;
+        this.scene.remove(this.Rotating_Group_R);
+        this.Rotating_Group_R.updateMatrixWorld();
+        //mise a jour remet comme avant
+        this.Rotating_Group_R.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -212,18 +300,18 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupR.children.forEach((cube, index) => {
+        this.Rotating_Group_R.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
 
-        this.scene.add(this.rotatingGroupR.children[0]);
-        this.scene.add(this.rotatingGroupR.children[0]);
-        this.scene.add(this.rotatingGroupR.children[0]);
-        this.scene.add(this.rotatingGroupR.children[0]);
+        this.scene.add(this.Rotating_Group_R.children[0]);
+        this.scene.add(this.Rotating_Group_R.children[0]);
+        this.scene.add(this.Rotating_Group_R.children[0]);
+        this.scene.add(this.Rotating_Group_R.children[0]);
 
-        this.ror = false;
-        this.scene.remove(this.rotatingGroupR);
-        this.rotatingGroupR.clear();
+        this.Flag_Rotation_R_Encours = false;
+        this.scene.remove(this.Rotating_Group_R);
+        this.Rotating_Group_R.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -231,31 +319,32 @@ export class Rubis3D {
           }
         });
         this.rotationAngleR = 0;
-        this.isRotationRComplete = false;
+        this.is_Rotation_R_Complete = false;
+        this.blocage_animation = false;
         this.prime = false;
       }
     }
-    if (!this.isRotationLComplete && this.rorl) {
+    if (!this.is_Rotation_L_Complete && this.Flag_Rotation_L_Encours) {
       if (this.rotationAngleL > -Math.PI / 2 && this.prime) {
         this.rotationAngleL -= 0.04;
         if (this.rotationAngleL < -Math.PI / 2) {
-          this.rotatingGroupL.rotation.x = -Math.PI / 2;
+          this.Rotatin_Group_L.rotation.x = -Math.PI / 2;
         } else {
-          this.rotatingGroupL.rotation.x = this.rotationAngleL;
+          this.Rotatin_Group_L.rotation.x = this.rotationAngleL;
         }
       } else if (this.rotationAngleL < Math.PI / 2 && !this.prime) {
         this.rotationAngleL += 0.04;
         if (this.rotationAngleL > Math.PI / 2) {
-          this.rotatingGroupL.rotation.x = Math.PI / 2;
+          this.Rotatin_Group_L.rotation.x = Math.PI / 2;
         } else {
-          this.rotatingGroupL.rotation.x = this.rotationAngleL;
+          this.Rotatin_Group_L.rotation.x = this.rotationAngleL;
         }
       } else {
-        this.isRotationLComplete = true;
-        this.scene.remove(this.rotatingGroupL);
-        this.rotatingGroupL.updateMatrixWorld();
+        this.is_Rotation_L_Complete = true;
+        this.scene.remove(this.Rotatin_Group_L);
+        this.Rotatin_Group_L.updateMatrixWorld();
 
-        this.rotatingGroupL.children.forEach((child) => {
+        this.Rotatin_Group_L.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -269,18 +358,18 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupL.children.forEach((cube, index) => {
+        this.Rotatin_Group_L.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
 
-        this.scene.add(this.rotatingGroupL.children[0]);
-        this.scene.add(this.rotatingGroupL.children[0]);
-        this.scene.add(this.rotatingGroupL.children[0]);
-        this.scene.add(this.rotatingGroupL.children[0]);
+        this.scene.add(this.Rotatin_Group_L.children[0]);
+        this.scene.add(this.Rotatin_Group_L.children[0]);
+        this.scene.add(this.Rotatin_Group_L.children[0]);
+        this.scene.add(this.Rotatin_Group_L.children[0]);
 
-        this.rorl = false;
-        this.scene.remove(this.rotatingGroupL);
-        this.rotatingGroupL.clear();
+        this.Flag_Rotation_L_Encours = false;
+        this.scene.remove(this.Rotatin_Group_L);
+        this.Rotatin_Group_L.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -288,31 +377,32 @@ export class Rubis3D {
           }
         });
         this.rotationAngleL = 0;
-        this.isRotationLComplete = false;
+        this.is_Rotation_L_Complete = false;
         this.prime = false;
+        this.blocage_animation = false;
       }
     }
-    if (!this.isRotationFComplete && this.rorf) {
+    if (!this.is_Rotation_F_Complete && this.Flag_Rotation_F_Encours) {
       if (this.rotationAngleF > -Math.PI / 2 && this.prime) {
         this.rotationAngleF -= 0.04;
         if (this.rotationAngleF < -Math.PI / 2) {
-          this.rotatingGroupF.rotation.z = -Math.PI / 2;
+          this.Rotatin_Group_F.rotation.z = -Math.PI / 2;
         } else {
-          this.rotatingGroupF.rotation.z = this.rotationAngleF;
+          this.Rotatin_Group_F.rotation.z = this.rotationAngleF;
         }
       } else if (this.rotationAngleF < Math.PI / 2 && !this.prime) {
         this.rotationAngleF += 0.04;
         if (this.rotationAngleF > Math.PI / 2) {
-          this.rotatingGroupF.rotation.z = Math.PI / 2;
+          this.Rotatin_Group_F.rotation.z = Math.PI / 2;
         } else {
-          this.rotatingGroupF.rotation.z = this.rotationAngleF;
+          this.Rotatin_Group_F.rotation.z = this.rotationAngleF;
         }
       } else {
-        this.isRotationFComplete = true;
-        this.scene.remove(this.rotatingGroupF);
-        this.rotatingGroupF.updateMatrixWorld();
+        this.is_Rotation_F_Complete = true;
+        this.scene.remove(this.Rotatin_Group_F);
+        this.Rotatin_Group_F.updateMatrixWorld();
 
-        this.rotatingGroupF.children.forEach((child) => {
+        this.Rotatin_Group_F.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -326,19 +416,19 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupF.children.forEach((cube, index) => {
+        this.Rotatin_Group_F.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
         this.cubes = [];
 
-        this.scene.add(this.rotatingGroupF.children[0]);
-        this.scene.add(this.rotatingGroupF.children[0]);
-        this.scene.add(this.rotatingGroupF.children[0]);
-        this.scene.add(this.rotatingGroupF.children[0]);
+        this.scene.add(this.Rotatin_Group_F.children[0]);
+        this.scene.add(this.Rotatin_Group_F.children[0]);
+        this.scene.add(this.Rotatin_Group_F.children[0]);
+        this.scene.add(this.Rotatin_Group_F.children[0]);
 
-        this.rorf = false;
-        this.scene.remove(this.rotatingGroupF);
-        this.rotatingGroupF.clear();
+        this.Flag_Rotation_F_Encours = false;
+        this.scene.remove(this.Rotatin_Group_F);
+        this.Rotatin_Group_F.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -346,31 +436,32 @@ export class Rubis3D {
           }
         });
         this.rotationAngleF = 0;
-        this.isRotationFComplete = false;
+        this.is_Rotation_F_Complete = false;
         this.prime = false;
+        this.blocage_animation = false;
       }
     }
-    if (!this.isRotationBComplete && this.rorb) {
+    if (!this.is_Rotation_B_Complete && this.Flag_Rotation_B_Encours) {
       if (this.rotationAngleB > -Math.PI / 2 && !this.prime) {
         this.rotationAngleB -= 0.04;
         if (this.rotationAngleB < -Math.PI / 2) {
-          this.rotatingGroupB.rotation.z = -Math.PI / 2;
+          this.Rotatin_Group_B.rotation.z = -Math.PI / 2;
         } else {
-          this.rotatingGroupB.rotation.z = this.rotationAngleB;
+          this.Rotatin_Group_B.rotation.z = this.rotationAngleB;
         }
       } else if (this.rotationAngleB < Math.PI / 2 && this.prime) {
         this.rotationAngleB += 0.04;
         if (this.rotationAngleB > Math.PI / 2) {
-          this.rotatingGroupB.rotation.z = Math.PI / 2;
+          this.Rotatin_Group_B.rotation.z = Math.PI / 2;
         } else {
-          this.rotatingGroupB.rotation.z = this.rotationAngleB;
+          this.Rotatin_Group_B.rotation.z = this.rotationAngleB;
         }
       } else {
-        this.isRotationBComplete = true;
-        this.scene.remove(this.rotatingGroupB);
-        this.rotatingGroupB.updateMatrixWorld();
+        this.is_Rotation_B_Complete = true;
+        this.scene.remove(this.Rotatin_Group_B);
+        this.Rotatin_Group_B.updateMatrixWorld();
 
-        this.rotatingGroupB.children.forEach((child) => {
+        this.Rotatin_Group_B.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -384,19 +475,19 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupB.children.forEach((cube, index) => {
+        this.Rotatin_Group_B.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
         this.cubes = [];
 
-        this.scene.add(this.rotatingGroupB.children[0]);
-        this.scene.add(this.rotatingGroupB.children[0]);
-        this.scene.add(this.rotatingGroupB.children[0]);
-        this.scene.add(this.rotatingGroupB.children[0]);
+        this.scene.add(this.Rotatin_Group_B.children[0]);
+        this.scene.add(this.Rotatin_Group_B.children[0]);
+        this.scene.add(this.Rotatin_Group_B.children[0]);
+        this.scene.add(this.Rotatin_Group_B.children[0]);
 
-        this.rorb = false;
-        this.scene.remove(this.rotatingGroupB);
-        this.rotatingGroupB.clear();
+        this.Flag_Rotation_B_Encours = false;
+        this.scene.remove(this.Rotatin_Group_B);
+        this.Rotatin_Group_B.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -404,31 +495,32 @@ export class Rubis3D {
           }
         });
         this.rotationAngleB = 0;
-        this.isRotationBComplete = false;
+        this.is_Rotation_B_Complete = false;
         this.prime = false;
+        this.blocage_animation = false;
       }
     }
-    if (!this.isRotationUComplete && this.roru) {
+    if (!this.is_Rotation_U_Complete && this.Flag_Rotation_U_Encours) {
       if (this.rotationAngleU > -Math.PI / 2 && !this.prime) {
         this.rotationAngleU -= 0.05;
         if (this.rotationAngleU < -Math.PI / 2) {
-          this.rotatingGroupU.rotation.y = -Math.PI / 2;
+          this.Rotatin_Group_U.rotation.y = -Math.PI / 2;
         } else {
-          this.rotatingGroupU.rotation.y = this.rotationAngleU;
+          this.Rotatin_Group_U.rotation.y = this.rotationAngleU;
         }
       } else if (this.rotationAngleU < Math.PI / 2 && this.prime) {
         this.rotationAngleU += 0.05;
         if (this.rotationAngleU > Math.PI / 2) {
-          this.rotatingGroupU.rotation.y = Math.PI / 2;
+          this.Rotatin_Group_U.rotation.y = Math.PI / 2;
         } else {
-          this.rotatingGroupU.rotation.y = this.rotationAngleU;
+          this.Rotatin_Group_U.rotation.y = this.rotationAngleU;
         }
       } else {
-        this.isRotationUComplete = true;
-        this.scene.remove(this.rotatingGroupU);
-        this.rotatingGroupU.updateMatrixWorld();
+        this.is_Rotation_U_Complete = true;
+        this.scene.remove(this.Rotatin_Group_U);
+        this.Rotatin_Group_U.updateMatrixWorld();
 
-        this.rotatingGroupU.children.forEach((child) => {
+        this.Rotatin_Group_U.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -442,19 +534,19 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupU.children.forEach((cube, index) => {
+        this.Rotatin_Group_U.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
         this.cubes = [];
 
-        this.scene.add(this.rotatingGroupU.children[0]);
-        this.scene.add(this.rotatingGroupU.children[0]);
-        this.scene.add(this.rotatingGroupU.children[0]);
-        this.scene.add(this.rotatingGroupU.children[0]);
+        this.scene.add(this.Rotatin_Group_U.children[0]);
+        this.scene.add(this.Rotatin_Group_U.children[0]);
+        this.scene.add(this.Rotatin_Group_U.children[0]);
+        this.scene.add(this.Rotatin_Group_U.children[0]);
 
-        this.roru = false;
-        this.scene.remove(this.rotatingGroupU);
-        this.rotatingGroupU.clear();
+        this.Flag_Rotation_U_Encours = false;
+        this.scene.remove(this.Rotatin_Group_U);
+        this.Rotatin_Group_U.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -462,31 +554,32 @@ export class Rubis3D {
           }
         });
         this.rotationAngleU = 0;
-        this.isRotationUComplete = false;
+        this.is_Rotation_U_Complete = false;
         this.prime = false;
+        this.blocage_animation = false;
       }
     }
-    if (!this.isRotationDComplete && this.rord) {
+    if (!this.is_Rotation_D_Complete && this.Flag_Rotation_D_Encours) {
       if (this.rotationAngleD > -Math.PI / 2 && !this.prime) {
         this.rotationAngleD -= 0.04;
         if (this.rotationAngleD < -Math.PI / 2) {
-          this.rotatingGroupD.rotation.y = -Math.PI / 2;
+          this.Rotatin_Group_D.rotation.y = -Math.PI / 2;
         } else {
-          this.rotatingGroupD.rotation.y = this.rotationAngleD;
+          this.Rotatin_Group_D.rotation.y = this.rotationAngleD;
         }
       } else if (this.rotationAngleD < Math.PI / 2 && this.prime) {
         this.rotationAngleD += 0.04;
         if (this.rotationAngleD > Math.PI / 2) {
-          this.rotatingGroupD.rotation.y = Math.PI / 2;
+          this.Rotatin_Group_D.rotation.y = Math.PI / 2;
         } else {
-          this.rotatingGroupD.rotation.y = this.rotationAngleD;
+          this.Rotatin_Group_D.rotation.y = this.rotationAngleD;
         }
       } else {
-        this.isRotationDComplete = true;
-        this.scene.remove(this.rotatingGroupD);
-        this.rotatingGroupD.updateMatrixWorld();
+        this.is_Rotation_D_Complete = true;
+        this.scene.remove(this.Rotatin_Group_D);
+        this.Rotatin_Group_D.updateMatrixWorld();
 
-        this.rotatingGroupD.children.forEach((child) => {
+        this.Rotatin_Group_D.children.forEach((child) => {
           if (child instanceof THREE.Mesh) {
             const worldPosition = new THREE.Vector3();
             child.getWorldPosition(worldPosition);
@@ -500,19 +593,19 @@ export class Rubis3D {
           }
         });
 
-        this.rotatingGroupD.children.forEach((cube, index) => {
+        this.Rotatin_Group_D.children.forEach((cube, index) => {
           this.scene.add(cube);
         });
         this.cubes = [];
 
-        this.scene.add(this.rotatingGroupD.children[0]);
-        this.scene.add(this.rotatingGroupD.children[0]);
-        this.scene.add(this.rotatingGroupD.children[0]);
-        this.scene.add(this.rotatingGroupD.children[0]);
+        this.scene.add(this.Rotatin_Group_D.children[0]);
+        this.scene.add(this.Rotatin_Group_D.children[0]);
+        this.scene.add(this.Rotatin_Group_D.children[0]);
+        this.scene.add(this.Rotatin_Group_D.children[0]);
 
-        this.rord = false;
-        this.scene.remove(this.rotatingGroupD);
-        this.rotatingGroupD.clear();
+        this.Flag_Rotation_D_Encours = false;
+        this.scene.remove(this.Rotatin_Group_D);
+        this.Rotatin_Group_D.clear();
 
         this.scene.traverse((object) => {
           if (object instanceof THREE.Mesh) {
@@ -520,71 +613,74 @@ export class Rubis3D {
           }
         });
         this.rotationAngleD = 0;
-        this.isRotationDComplete = false;
+        this.is_Rotation_D_Complete = false;
         this.prime = false;
+        this.blocage_animation = false;
       }
     }
-    if (this.rotaterr) {
+
+    // ajout de groupe dans la scene pour la rotation
+    if (this.flag_ajout_groupe_R) {
+      //ajout dans un groupe pour rotation
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.x) === 2) {
-          this.rotatingGroupR.add(cube);
+          this.Rotating_Group_R.add(cube);
         }
       });
-      console.log();
-      this.scene.add(this.rotatingGroupR);
-      this.ror = true;
-      this.rotaterr = false;
+      this.scene.add(this.Rotating_Group_R);
+      this.Flag_Rotation_R_Encours = true;
+      this.flag_ajout_groupe_R = false;
     }
-    if (this.rotatell) {
+    if (this.Flag_Ajout_Groupe_L) {
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.x) === -2) {
-          this.rotatingGroupL.add(cube);
+          this.Rotatin_Group_L.add(cube);
         }
       });
 
-      this.scene.add(this.rotatingGroupL);
-      this.rorl = true;
-      this.rotatell = false;
+      this.scene.add(this.Rotatin_Group_L);
+      this.Flag_Rotation_L_Encours = true;
+      this.Flag_Ajout_Groupe_L = false;
     }
-    if (this.rotateff) {
+    if (this.Flag_Ajout_Groupe_F) {
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.z) === 2) {
-          this.rotatingGroupF.add(cube);
+          this.Rotatin_Group_F.add(cube);
         }
       });
-      this.scene.add(this.rotatingGroupF);
-      this.rorf = true;
-      this.rotateff = false;
+      this.scene.add(this.Rotatin_Group_F);
+      this.Flag_Rotation_F_Encours = true;
+      this.Flag_Ajout_Groupe_F = false;
     }
-    if (this.rotatebb) {
+    if (this.Flag_Ajout_Groupe_B) {
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.z) === -2) {
-          this.rotatingGroupB.add(cube);
+          this.Rotatin_Group_B.add(cube);
         }
       });
-      this.scene.add(this.rotatingGroupB);
-      this.rorb = true;
-      this.rotatebb = false;
+      this.scene.add(this.Rotatin_Group_B);
+      this.Flag_Rotation_B_Encours = true;
+      this.Flag_Ajout_Groupe_B = false;
     }
-    if (this.rotateuu) {
+    if (this.Flag_Ajout_Groupe_U) {
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.y) === 2) {
-          this.rotatingGroupU.add(cube);
+          this.Rotatin_Group_U.add(cube);
         }
       });
-      this.scene.add(this.rotatingGroupU);
-      this.roru = true;
-      this.rotateuu = false;
+      this.scene.add(this.Rotatin_Group_U);
+      this.Flag_Rotation_U_Encours = true;
+      this.Flag_Ajout_Groupe_U = false;
     }
-    if (this.rotatedd) {
+    if (this.Flag_Ajout_Groupe_D) {
       this.cubes.forEach((cube) => {
         if (Math.round(cube.position.y) === -2) {
-          this.rotatingGroupD.add(cube);
+          this.Rotatin_Group_D.add(cube);
         }
       });
-      this.scene.add(this.rotatingGroupD);
-      this.rord = true;
-      this.rotatedd = false;
+      this.scene.add(this.Rotatin_Group_D);
+      this.Flag_Rotation_D_Encours = true;
+      this.Flag_Ajout_Groupe_D = false;
     }
 
     this.renderer.render(this.scene, this.camera);

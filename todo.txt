@@ -46,3 +46,13 @@ orientation coin jaune debutant ✓
 
 
 https://www.cube-store.fr/blogs/blog-rubiks-cubes/comment-resoudre-un-rubiks-cube-3x3#
+git checkout -b feature/nouvelle-fonction
+
+git checkout test
+git merge feature/nouvelle-fonction
+git push origin test
+
+---
+git checkout test
+git merge feature/nouvelle-fonction
+git push origin test

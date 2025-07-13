@@ -1,0 +1,22 @@
+.container {
+    flex-direction: column; 
+   /* Arrange les divs en colonne */
+    align-items: center;
+    width: 100%; /* Prend toute la largeur de l'écran */
+    padding: 20px;
+    box-sizing: border-box; /* Prend en compte le padding dans la largeur totale */
+  }
+  
+  /* Scène 3D */
+  .threejs-container {
+    width: 100%; /* Utilise toute la largeur de l'écran */
+    max-width: 100%; /* Pas de largeur maximale pour rester responsive */
+    height: 100vh; /* Ajuste la hauteur en fonction de la hauteur de la fenêtre */
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border: 2px solid #90caf9;
+    border-radius: 10px;
+  
+    margin-bottom: 20px; /* Espace entre la scène et le tableau */
+    box-sizing: border-box; /* Prend en compte la bordure dans la largeur totale */
+  }
+  

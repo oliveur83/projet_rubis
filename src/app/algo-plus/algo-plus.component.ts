@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Rubis3D } from '../../rubis3D';
-import { algof2L } from '../constant';
+
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-algo-plus',

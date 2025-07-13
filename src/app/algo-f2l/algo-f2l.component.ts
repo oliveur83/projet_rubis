@@ -47,18 +47,18 @@ export class AlgoF2lComponent {
           | 'd'
           | 'b']: () => void;
       } = {
-        R: () => rubis3DInstance.rotater(false),
-        L: () => rubis3DInstance.rotatel(false),
-        U: () => rubis3DInstance.rotateu(false),
-        F: () => rubis3DInstance.rotatef(false),
-        D: () => rubis3DInstance.rotatef(false),
-        B: () => rubis3DInstance.rotatef(false),
-        r: () => rubis3DInstance.rotater(true),
-        l: () => rubis3DInstance.rotatel(true),
-        u: () => rubis3DInstance.rotateu(true),
-        f: () => rubis3DInstance.rotatef(true),
-        d: () => rubis3DInstance.rotatef(true),
-        b: () => rubis3DInstance.rotatef(true),
+        R: () => rubis3DInstance.configuration_rotation_R(false),
+        L: () => rubis3DInstance.Configuration_Rotation_L(false),
+        U: () => rubis3DInstance.Configuration_Rotation_U(false),
+        F: () => rubis3DInstance.Configuration_Rotation_F(false),
+        D: () => rubis3DInstance.Configuration_Rotation_D(false),
+        B: () => rubis3DInstance.Configuration_Rotation_B(false),
+        r: () => rubis3DInstance.configuration_rotation_R(true),
+        l: () => rubis3DInstance.Configuration_Rotation_L(true),
+        u: () => rubis3DInstance.Configuration_Rotation_U(true),
+        f: () => rubis3DInstance.Configuration_Rotation_F(true),
+        d: () => rubis3DInstance.Configuration_Rotation_D(true),
+        b: () => rubis3DInstance.Configuration_Rotation_B(true),
       };
 
       if (index < 0 || index >= algof2L.length) {
@@ -78,7 +78,7 @@ export class AlgoF2lComponent {
           setTimeout(() => {
             actions[invertedKey as keyof typeof actions]();
           }, delay);
-          delay += 2000;
+          delay += 1000;
         }
       }
     } else {
