@@ -31,44 +31,25 @@ export class AlgoF2lComponent {
     const rubis3DInstance = this.rubis3DInstances[index];
 
     if (rubis3DInstance) {
-      const actions: {
-        [key in
-          | 'R'
-          | 'L'
-          | 'U'
-          | 'F'
-          | 'D'
-          | 'B'
-          | 'r'
-          | 'l'
-          | 'u'
-          | 'f'
-          | 'd'
-          | 'b']: () => void;
-      } = {
-        R: () => rubis3DInstance.configuration_rotation_R(false),
-        L: () => rubis3DInstance.Configuration_Rotation_L(false),
-        U: () => rubis3DInstance.Configuration_Rotation_U(false),
-        F: () => rubis3DInstance.Configuration_Rotation_F(false),
-        D: () => rubis3DInstance.Configuration_Rotation_D(false),
-        B: () => rubis3DInstance.Configuration_Rotation_B(false),
-        r: () => rubis3DInstance.configuration_rotation_R(true),
-        l: () => rubis3DInstance.Configuration_Rotation_L(true),
-        u: () => rubis3DInstance.Configuration_Rotation_U(true),
-        f: () => rubis3DInstance.Configuration_Rotation_F(true),
-        d: () => rubis3DInstance.Configuration_Rotation_D(true),
-        b: () => rubis3DInstance.Configuration_Rotation_B(true),
-      };
+      const sequence: ActionKey[][] = algof2L.map((str) => {
+        const result: ActionKey[] = [];
+        const clean = str.replace(/\s+/g, '').split('');
 
-      let delay = 0;
+        for (let i = 0; i < clean.length; i++) {
+          const char = clean[i];
+          const next = clean[i + 1];
 
-      const sequence: ActionKey[][] = algof2L.map((str) =>
-        [...str].filter((c): c is ActionKey =>
-          ['R', 'L', 'U', 'F', 'D', 'B', 'r', 'l', 'u', 'f', 'd', 'b'].includes(
-            c
-          )
-        )
-      );
+          if (next === "'") {
+            result.push(char.toLowerCase() as ActionKey); // Prime move
+            i++; // Skip the apostrophe
+          } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
+            result.push(char as ActionKey);
+          }
+          // ignore everything else
+        }
+
+        return result;
+      });
 
       rubis3DInstance.Recuperation_liste(sequence[index]);
     } else {

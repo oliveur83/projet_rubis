@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Rubis3D } from '../../rubis3D';
-
+import { Rubis3D, ActionKey } from '../../rubis3D';
+import { algoOLL } from '../constant';
 @Component({
   selector: 'app-algo-oll',
   standalone: true,
@@ -28,6 +28,13 @@ export class AlgoOLLComponent {
 
   playScene(index: number): void {
     const rubis3DInstance = this.rubis3DInstances[index];
+    const sequence: ActionKey[][] = algoOLL.map((str) =>
+      [...str].filter((c): c is ActionKey =>
+        ['R', 'L', 'U', 'F', 'D', 'B', 'r', 'l', 'u', 'f', 'd', 'b'].includes(c)
+      )
+    );
+
+    rubis3DInstance.Recuperation_liste(sequence[index]);
   }
 
   voirPlus(index: number): void {

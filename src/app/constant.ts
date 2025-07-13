@@ -1,7 +1,7 @@
 // les lettre en minuscule sont le ' r=R'
 
 export const algof2L: string[] = [
-  'URur ',
+  "URU'R'",
   'yURURf',
   'yRUR',
   'RUR',
