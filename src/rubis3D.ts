@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-type ActionKey =
+export type ActionKey =
   | 'R'
   | 'L'
   | 'U'
@@ -244,16 +244,14 @@ export class Rubis3D {
     let i = 0;
     const next = () => {
       if (i < toto.length) {
-        console.log('tu rentres là ??', this.blocage_animation);
         if (!this.blocage_animation) {
-          console.log('tu rentres', i);
           this.actions[toto[i]](); // Exécute ton action
           // Appelle animate ici si nécessaire
           this.animate(); // Si besoin explicite
           this.animate();
         }
         i++;
-        console.log('tour');
+
         setTimeout(next, 500); // Laisse le temps à Angular de détecter les changements
       }
     };

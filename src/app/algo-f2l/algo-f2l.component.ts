@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Rubis3D } from '../../rubis3D';
+import { Rubis3D, ActionKey } from '../../rubis3D';
 import { algof2L } from '../constant';
 @Component({
   selector: 'app-algo-f2l',
@@ -24,13 +24,12 @@ export class AlgoF2lComponent {
       const rubis3D = new Rubis3D(container);
       rubis3D.init();
       this.rubis3DInstances[index] = rubis3D;
-
-      console.log(`Scène 3D initialisée pour le conteneur ${index + 1}`);
     });
   }
 
   playScene(index: number): void {
     const rubis3DInstance = this.rubis3DInstances[index];
+
     if (rubis3DInstance) {
       const actions: {
         [key in
@@ -61,26 +60,17 @@ export class AlgoF2lComponent {
         b: () => rubis3DInstance.Configuration_Rotation_B(true),
       };
 
-      if (index < 0 || index >= algof2L.length) {
-        console.error(`Index ${index} hors limites pour algof2L.`);
-        return;
-      }
-      const sequence = algof2L[index];
       let delay = 0;
 
-      for (const char of sequence.split('').reverse()) {
-        if (char in actions) {
-          const invertedKey =
-            char === char.toLowerCase()
-              ? char.toUpperCase()
-              : char.toLowerCase();
+      const sequence: ActionKey[][] = algof2L.map((str) =>
+        [...str].filter((c): c is ActionKey =>
+          ['R', 'L', 'U', 'F', 'D', 'B', 'r', 'l', 'u', 'f', 'd', 'b'].includes(
+            c
+          )
+        )
+      );
 
-          setTimeout(() => {
-            actions[invertedKey as keyof typeof actions]();
-          }, delay);
-          delay += 1000;
-        }
-      }
+      rubis3DInstance.Recuperation_liste(sequence[index]);
     } else {
       console.error(
         `Aucune instance Rubis3D trouvée pour le conteneur ${index + 1}`

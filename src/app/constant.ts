@@ -1,4 +1,5 @@
 // les lettre en minuscule sont le ' r=R'
+
 export const algof2L: string[] = [
   'URur ',
   'yURURf',
