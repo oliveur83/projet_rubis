@@ -11,7 +11,7 @@ import { ChronometreRubisComponent } from './chronometre-rubis/chronometre-rubis
 import { ProfilComponent } from './profil/profil.component';
 export const routes: Routes = [
   //  { path: '', component: PrincipalComponent },
-  { path: '', component: PrincipalComponent },
+  { path: '', component: ChronometreRubisComponent },
   { path: 'AlgoF2l', component: AlgoF2lComponent },
   { path: 'AlgoPLL', component: AlgoPLLComponent },
   { path: 'AlgoOLL', component: AlgoOLLComponent },
