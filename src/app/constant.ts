@@ -46,7 +46,7 @@ export const algof2L: string[] = [
   '	RUruRurUUyruR',
 ];
 export const algoPLL: string[] = [
-  "R2 U  R U R' U'  R' U'  R' U R' ",
+  "RRRU'R'U'RURURU'R",
   " R U'  R U  R U  R U'  R' U' R2",
   "M2 U M2 U M' U2 M2 U2 M' U2",
   'M2 U M2 U2 M2 U M2',

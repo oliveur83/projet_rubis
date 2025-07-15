@@ -1,7 +1,9 @@
 import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Rubis3D } from '../../rubis3D';
+import { Rubis3D, ActionKey } from '../../rubis3D';
+import { algoPLL } from '../constant';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-algo-pll',
   standalone: true,
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 export class AlgoPLLComponent {
   containers = Array.from({ length: 41 });
   private rubis3DInstances: Rubis3D[] = [];
-
+  public algoPLL = algoPLL;
   constructor(private router: Router, private elementRef: ElementRef) {}
 
   ngAfterViewInit(): void {
@@ -28,6 +30,34 @@ export class AlgoPLLComponent {
 
   playScene(index: number): void {
     const rubis3DInstance = this.rubis3DInstances[index];
+
+    if (rubis3DInstance) {
+      const sequence: ActionKey[][] = algoPLL.map((str) => {
+        const result: ActionKey[] = [];
+        const clean = str.replace(/\s+/g, '').split('');
+
+        for (let i = 0; i < clean.length; i++) {
+          const char = clean[i];
+          const next = clean[i + 1];
+
+          if (next === "'") {
+            result.push(char.toLowerCase() as ActionKey); // Prime move
+            i++; // Skip the apostrophe
+          } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
+            result.push(char as ActionKey);
+          }
+          // ignore everything else
+        }
+
+        return result;
+      });
+      console.log(sequence[index]);
+      rubis3DInstance.Recuperation_liste(sequence[index]);
+    } else {
+      console.error(
+        `Aucune instance Rubis3D trouvée pour le conteneur ${index + 1}`
+      );
+    }
   }
 
   voirPlus(index: number): void {
