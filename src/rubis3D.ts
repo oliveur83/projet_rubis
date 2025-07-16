@@ -29,6 +29,7 @@ export class Rubis3D {
   Rotatin_Group_U!: THREE.Group;
   Rotatin_Group_D!: THREE.Group;
   Rotatin_Group_Y!: THREE.Group;
+  Rotatin_Group_X!: THREE.Group;
 
   rotationAngleR = 0;
   rotationAngleL = 0;
@@ -37,6 +38,7 @@ export class Rubis3D {
   rotationAngleU = 0;
   rotationAngleD = 0;
   rotationAngleY = 0;
+  rotationAngleX = 0;
 
   is_Rotation_R_Complete = false;
   is_Rotation_F_Complete = false;
@@ -45,6 +47,7 @@ export class Rubis3D {
   is_Rotation_U_Complete = false;
   is_Rotation_D_Complete = false;
   is_Rotation_Y_Complete = false;
+  is_Rotation_X_Complete = false;
 
   Flag_Rotation_R_Encours = false;
   Flag_Rotation_F_Encours = false;
@@ -53,6 +56,7 @@ export class Rubis3D {
   Flag_Rotation_U_Encours = false;
   Flag_Rotation_D_Encours = false;
   Flag_Rotation_Y_Encours = false;
+  Flag_Rotation_X_Encours = false;
 
   flag_ajout_groupe_R = false;
   Flag_Ajout_Groupe_F = false;
@@ -61,6 +65,7 @@ export class Rubis3D {
   Flag_Ajout_Groupe_U = false;
   Flag_Ajout_Groupe_D = false;
   Flag_Ajout_Groupe_Y = false;
+  Flag_Ajout_Groupe_X = false;
   prime = false;
   // variable pour n
   blocage_animation = false;
@@ -116,6 +121,10 @@ export class Rubis3D {
           case 'y':
             this.blocage_animation = true;
             this.configuration_rotation_Y();
+            break;
+          case 'x':
+            this.blocage_animation = true;
+            this.configuration_rotation_X();
             break;
           /* case 'R':
           case 'r':
@@ -195,6 +204,7 @@ export class Rubis3D {
     this.Rotatin_Group_U = new THREE.Group();
     this.Rotatin_Group_D = new THREE.Group();
     this.Rotatin_Group_Y = new THREE.Group();
+    this.Rotatin_Group_X = new THREE.Group();
 
     const spacing = 2;
     for (let x = 0; x < 3; x++) {
@@ -226,6 +236,10 @@ export class Rubis3D {
   }
   configuration_rotation_Y() {
     this.Flag_Ajout_Groupe_Y = true;
+    this.blocage_animation = true;
+  }
+  configuration_rotation_X() {
+    this.Flag_Ajout_Groupe_X = true;
     this.blocage_animation = true;
   }
   configuration_rotation_R(prime: boolean) {
@@ -696,7 +710,68 @@ export class Rubis3D {
         this.blocage_animation = false;
       }
     }
+    if (!this.is_Rotation_X_Complete && this.Flag_Rotation_X_Encours) {
+      // if c'est égale a R
+      if (this.rotationAngleX > -Math.PI / 2 && !this.prime) {
+        this.rotationAngleX -= 0.04;
+        if (this.rotationAngleX < -Math.PI / 2) {
+          this.Rotatin_Group_X.rotation.x = -Math.PI / 2;
+        } else {
+          this.Rotatin_Group_X.rotation.x = this.rotationAngleX;
+        }
+      }
+      // sinon c'est terminé
+      else {
+        this.is_Rotation_X_Complete = true;
+        this.scene.remove(this.Rotatin_Group_X);
+        this.Rotatin_Group_X.updateMatrixWorld();
+        //mise a jour remet comme avant
+        this.Rotatin_Group_X.children.forEach((child) => {
+          if (child instanceof THREE.Mesh) {
+            const worldPosition = new THREE.Vector3();
+            child.getWorldPosition(worldPosition);
+            child.position.copy(worldPosition);
 
+            const worldQuaternion = new THREE.Quaternion();
+            child.getWorldQuaternion(worldQuaternion);
+            child.quaternion.copy(worldQuaternion);
+          } else {
+            console.log('Objet ignoré :', child);
+          }
+        });
+
+        this.Rotatin_Group_X.children.forEach((cube, index) => {
+          this.scene.add(cube);
+        });
+
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+        this.scene.add(this.Rotatin_Group_X.children[0]);
+
+        this.Flag_Rotation_X_Encours = false;
+        this.scene.remove(this.Rotatin_Group_X);
+        this.Rotatin_Group_X.clear();
+
+        this.scene.traverse((object) => {
+          if (object instanceof THREE.Mesh) {
+            this.cubes.push(object);
+          }
+        });
+        this.rotationAngleX = 0;
+        this.is_Rotation_X_Complete = false;
+        this.blocage_animation = false;
+      }
+    }
     // ajout de groupe dans la scene pour la rotation
     if (this.flag_ajout_groupe_R) {
       //ajout dans un groupe pour rotation
@@ -767,6 +842,14 @@ export class Rubis3D {
       this.scene.add(this.Rotatin_Group_Y);
       this.Flag_Rotation_Y_Encours = true;
       this.Flag_Ajout_Groupe_Y = false;
+    }
+    if (this.Flag_Ajout_Groupe_X) {
+      this.cubes.forEach((cube) => {
+        this.Rotatin_Group_X.add(cube);
+      });
+      this.scene.add(this.Rotatin_Group_X);
+      this.Flag_Rotation_X_Encours = true;
+      this.Flag_Ajout_Groupe_X = false;
     }
 
     this.renderer.render(this.scene, this.camera);
