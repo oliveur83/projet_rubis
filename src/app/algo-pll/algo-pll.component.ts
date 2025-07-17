@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: '../css/algocss.component.css',
 })
 export class AlgoPLLComponent {
-  containers = Array.from({ length: 41 });
+  containers = Array.from({ length: 18 });
   private rubis3DInstances: Rubis3D[] = [];
   public algoPLL = algoPLL;
   constructor(private router: Router, private elementRef: ElementRef) {}
