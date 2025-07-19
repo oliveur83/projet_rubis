@@ -11,7 +11,9 @@ export type ActionKey =
   | 'u'
   | 'f'
   | 'd'
-  | 'b';
+  | 'b'
+  | 'rw'
+  | 'fw';
 
 export class Rubis3D {
   scene!: THREE.Scene;
@@ -87,7 +89,7 @@ export class Rubis3D {
     'u',
     'r',
     'f',
-    'R',
+    'rw',
     'R',
     'u',
     'r',
@@ -96,6 +98,7 @@ export class Rubis3D {
     'U',
     'r',
     'F',
+    'fw',
   ];
 
   actions: { [key in ActionKey]: () => void } = {
@@ -105,12 +108,14 @@ export class Rubis3D {
     F: () => this.Configuration_Rotation_F(false),
     D: () => this.Configuration_Rotation_D(false),
     B: () => this.Configuration_Rotation_B(false),
-    r: () => this.configuration_rotation_r(true),
+    r: () => this.configuration_rotation_R(true),
     l: () => this.Configuration_Rotation_L(true),
     u: () => this.Configuration_Rotation_U(true),
-    f: () => this.Configuration_Rotation_f(true),
+    f: () => this.Configuration_Rotation_F(true),
     d: () => this.Configuration_Rotation_D(true),
     b: () => this.Configuration_Rotation_B(true),
+    rw: () => this.configuration_rotation_r(false),
+    fw: () => this.Configuration_Rotation_f(false),
   };
 
   constructor(container: HTMLElement) {

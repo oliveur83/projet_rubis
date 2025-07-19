@@ -45,7 +45,11 @@ export class AlgoOLLComponent {
           } else if (char === '2') {
             result.push(next as ActionKey);
             result.push(next as ActionKey); // Prime move
-            i++; // Skip the apostrophe
+            i++; // Skip the apostrophe*
+          } else if (char === 'r') {
+            result.push('RW' as ActionKey);
+          } else if (char === 'f') {
+            result.push('fW' as ActionKey);
           } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
             result.push(char as ActionKey);
           }
