@@ -10,6 +10,7 @@ import { algoOLL } from '../constant';
   styleUrl: '../css/algocss.component.css',
 })
 export class AlgoOLLComponent {
+  public algoOLL = algoOLL;
   containers = Array.from({ length: 41 });
   private rubis3DInstances: Rubis3D[] = [];
 
@@ -28,15 +29,39 @@ export class AlgoOLLComponent {
 
   playScene(index: number): void {
     const rubis3DInstance = this.rubis3DInstances[index];
-    const sequence: ActionKey[][] = algoOLL.map((str) =>
-      [...str].filter((c): c is ActionKey =>
-        ['R', 'L', 'U', 'F', 'D', 'B', 'r', 'l', 'u', 'f', 'd', 'b'].includes(c)
-      )
-    );
 
-    rubis3DInstance.Recuperation_liste(sequence[index]);
+    if (rubis3DInstance) {
+      const sequence: ActionKey[][] = algoOLL.map((str) => {
+        const result: ActionKey[] = [];
+        const clean = str.replace(/\s+/g, '').split('');
+
+        for (let i = 0; i < clean.length; i++) {
+          const char = clean[i];
+          const next = clean[i + 1];
+
+          if (next === "'") {
+            result.push(char.toLowerCase() as ActionKey); // Prime move
+            i++; // Skip the apostrophe
+          } else if (char === '2') {
+            result.push(next as ActionKey);
+            result.push(next as ActionKey); // Prime move
+            i++; // Skip the apostrophe
+          } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
+            result.push(char as ActionKey);
+          }
+          // ignore everything else
+        }
+
+        return result;
+      });
+      console.log(sequence[index]);
+      rubis3DInstance.Recuperation_liste(sequence[index]);
+    } else {
+      console.error(
+        `Aucune instance Rubis3D trouvée pour le conteneur ${index + 1}`
+      );
+    }
   }
-
   voirPlus(index: number): void {
     alert('Voir plus de contenu à venir !');
   }
