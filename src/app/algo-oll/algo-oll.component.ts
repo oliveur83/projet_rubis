@@ -38,18 +38,28 @@ export class AlgoOLLComponent {
         for (let i = 0; i < clean.length; i++) {
           const char = clean[i];
           const next = clean[i + 1];
-
+          const prec = clean[i - 1];
           if (next === "'") {
-            result.push(char.toLowerCase() as ActionKey); // Prime move
+            if (char === 'r') {
+              result.push('rww' as ActionKey);
+            } else if (char === 'f') {
+              result.push('fww' as ActionKey);
+            } else if (char === 'l') {
+              result.push('lww' as ActionKey);
+            } else {
+              result.push(char.toLowerCase() as ActionKey);
+            } // Prime move
             i++; // Skip the apostrophe
-          } else if (char === '2') {
-            result.push(next as ActionKey);
-            result.push(next as ActionKey); // Prime move
+          } else if (next === '2') {
+            result.push(char as ActionKey);
+            result.push(char as ActionKey); // Prime move
             i++; // Skip the apostrophe*
           } else if (char === 'r') {
-            result.push('RW' as ActionKey);
+            result.push('rw' as ActionKey);
           } else if (char === 'f') {
-            result.push('fW' as ActionKey);
+            result.push('fw' as ActionKey);
+          } else if (char === 'l') {
+            result.push('lw' as ActionKey);
           } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
             result.push(char as ActionKey);
           }
