@@ -12,7 +12,7 @@ import { ShapeUtils } from 'three';
 })
 export class AlgoOLLComponent {
   public algoOLL = algoOLL;
-  containers = Array.from({ length: 41 });
+  containers = Array.from({ length: 57 });
   private rubis3DInstances: Rubis3D[] = [];
 
   constructor(private elementRef: ElementRef) {}
@@ -74,7 +74,7 @@ export class AlgoOLLComponent {
             result.push('fw' as ActionKey);
           } else if (char === 'l') {
             result.push('lw' as ActionKey);
-          } else if (['R', 'L', 'U', 'F', 'D', 'B'].includes(char)) {
+          } else if (['R', 'L', 'U', 'F', 'D', 'B', 'M', 'S'].includes(char)) {
             result.push(char as ActionKey);
           }
           // ignore everything else

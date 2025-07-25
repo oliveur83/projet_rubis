@@ -154,11 +154,11 @@ export class Rubis3D {
             break;
           case 'r':
             this.blocage_animation = true;
-            this.configuration_rotation_r(false);
+            this.Configuration_Rotation_S(false);
             break;
           case 'l':
             this.blocage_animation = true;
-            this.Configuration_Rotation_l(false);
+            this.configuration_rotation_M(false);
             break;
           /* case 'R':
           case 'r':
@@ -350,7 +350,7 @@ export class Rubis3D {
           i++;
         }
 
-        setTimeout(next, 1000); // Laisse le temps à Angular de détecter les changements
+        setTimeout(next, 4000); // Laisse le temps à Angular de détecter les changements
       }
     };
     next(); // Démarre la boucle
@@ -422,7 +422,7 @@ export class Rubis3D {
     }
     if (!this.is_Rotation_M_Complete && this.Flag_Rotation_M_Encours) {
       // if c'est égale a R
-      if (this.rotationAngleM > -Math.PI / 2 && !this.prime) {
+      if (this.rotationAngleM > -Math.PI / 2 && this.prime) {
         this.rotationAngleM -= 0.04;
         if (this.rotationAngleM < -Math.PI / 2) {
           this.Rotatin_Group_M.rotation.x = -Math.PI / 2;
@@ -431,7 +431,7 @@ export class Rubis3D {
         }
       }
       // if c'est égale a R'
-      else if (this.rotationAngleM < Math.PI / 2 && this.prime) {
+      else if (this.rotationAngleM < Math.PI / 2 && !this.prime) {
         this.rotationAngleM += 0.04;
         if (this.rotationAngleM > Math.PI / 2) {
           this.Rotatin_Group_M.rotation.x = Math.PI / 2;
@@ -467,7 +467,8 @@ export class Rubis3D {
         this.scene.add(this.Rotatin_Group_M.children[0]);
         this.scene.add(this.Rotatin_Group_M.children[0]);
         this.scene.add(this.Rotatin_Group_M.children[0]);
-
+        this.scene.add(this.Rotatin_Group_M.children[0]);
+        this.scene.add(this.Rotatin_Group_M.children[0]);
         this.Flag_Rotation_R_Encours = false;
         this.scene.remove(this.Rotatin_Group_M);
         this.Rotatin_Group_M.clear();
@@ -1174,7 +1175,7 @@ export class Rubis3D {
     if (this.Flag_Ajout_Groupe_M) {
       //ajout dans un groupe pour rotation
       this.cubes.forEach((cube) => {
-        if (Math.round(cube.position.x) === 2) {
+        if (Math.round(cube.position.x) === 0) {
           this.Rotatin_Group_M.add(cube);
         }
       });
@@ -1292,9 +1293,6 @@ export class Rubis3D {
     }
     if (this.Flag_Ajout_Groupe_S) {
       this.cubes.forEach((cube) => {
-        if (Math.round(cube.position.z) === 2) {
-          this.Rotatin_Group_S.add(cube);
-        }
         if (Math.round(cube.position.z) === 0) {
           this.Rotatin_Group_S.add(cube);
         }

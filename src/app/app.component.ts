@@ -54,7 +54,6 @@ export class AppComponent {
   }
   algoprofil() {
     this.router.navigate(['/AlgoProfil']);
-    console.log('toto');
   }
   Chrono() {
     this.router.navigate(['/Chrono']);
@@ -72,5 +71,13 @@ export class AppComponent {
 
   AlgoOLLblind() {
     this.router.navigate(['/AlgoOLL']);
+  }
+  goTo(event: string) {
+    this.router.navigate(['/AlgoOLL']); // Exemple : /epreuve/3x3
+  }
+  activeSub: string | null = null;
+
+  toggleSub(name: string) {
+    this.activeSub = this.activeSub === name ? null : name;
   }
 }

@@ -1,34 +1,71 @@
 <div class="header">
-  <div class="menu-cube">
-    <div class="logo" (click)="toggleMenu()">
-      Menu Cube
-      <div class="dropdown" *ngIf="ismenu">
-        <!-- Menu principal -->
-        <div class="submenu">
-          <div class="submenu-title">3x3</div>
-          <a (click)="debutant()" class="dropdown-item">Débutant</a>
-          <a (click)="AlgoF2L()" class="dropdown-item">F2L</a>
-          <a (click)="AlgoOLL()" class="dropdown-item">OLL</a>
-          <a (click)="AlgoPLL()" class="dropdown-item">PLL</a>
-
-          <div class="submenu-title">Blind</div>
-          <a (click)="debutantblind()" class="dropdown-item">3x3 Débutant</a>
-          <a (click)="AlgoPLLblind()" class="dropdown-item">3x3 M2</a>
-          <a (click)="AlgoF2Lblind()" class="dropdown-item">4x4</a>
-          <a (click)="AlgoOLLblind()" class="dropdown-item">5x5</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="menu-title" (click)="toggleMenu()">🧊 Épreuves WCA</div>
 
   <div class="account" (click)="toggleDropdown()">
     <span>Compte</span>
     <i class="account-icon">👤</i>
-    <!-- Menu déroulant -->
     <div class="dropdown" *ngIf="isDropdownOpen">
       <a (click)="Connexion()" class="dropdown-item">Connexion</a>
       <a href="#" class="dropdown-item">Déconnexion</a>
       <a (click)="algoprofil()" class="dropdown-item">Mes algos</a>
+    </div>
+  </div>
+</div>
+
+<div class="menu-wrapper" *ngIf="ismenu">
+  <div class="cube-grid">
+    <!-- NxN classiques -->
+    <div class="cube-section">
+      <div class="cube-section-title">Cubes NxN</div>
+      <div class="cube-grid-row">
+        <div class="cube-tile red" (click)="goTo('2x2')">2x2</div>
+
+        <!-- 3x3 avec sous-catégories -->
+        <div class="cube-tile orange" (click)="toggleSub('3x3')">3x3</div>
+        <div class="sub-tile-list" *ngIf="activeSub === '3x3'">
+          <div class="sub-tile" (click)="goTo('3x3-debutant'); $event.stopPropagation()">Débutant</div>
+          <div class="sub-tile" (click)="goTo('3x3-f2l'); $event.stopPropagation()">F2L</div>
+          <div class="sub-tile" (click)="goTo('3x3-oll'); $event.stopPropagation()">OLL</div>
+          <div class="sub-tile" (click)="goTo('3x3-pll'); $event.stopPropagation()">PLL</div>
+        </div>
+
+        <div class="cube-tile yellow" (click)="goTo('4x4')">4x4</div>
+        <div class="cube-tile green" (click)="goTo('5x5')">5x5</div>
+        <div class="cube-tile blue" (click)="goTo('6x6')">6x6</div>
+        <div class="cube-tile white" (click)="goTo('7x7')">7x7</div>
+      </div>
+    </div>
+
+    <!-- Modifiés -->
+    <div class="cube-section">
+      <div class="cube-section-title">Cubes modifiés</div>
+      <div class="cube-grid-row">
+        <div class="cube-tile green" (click)="goTo('pyraminx')">Pyraminx</div>
+        <div class="cube-tile yellow" (click)="goTo('skewb')">Skewb</div>
+        <div class="cube-tile purple" (click)="goTo('megaminx')">Megaminx</div>
+        <div class="cube-tile gray" (click)="goTo('square1')">Square-1</div>
+      </div>
+    </div>
+
+    <!-- Blindfolded -->
+    <div class="cube-section">
+      <div class="cube-section-title">Blindfolded</div>
+      <div class="cube-grid-row">
+        <div class="cube-tile black" (click)="goTo('3x3bf')">3x3 Blind</div>
+        <div class="cube-tile black" (click)="goTo('4x4bf')">4x4 Blind</div>
+        <div class="cube-tile black" (click)="goTo('5x5bf')">5x5 Blind</div>
+        <div class="cube-tile black" (click)="goTo('multiblind')">Multi-Blind</div>
+      </div>
+    </div>
+
+    <!-- Spécialités -->
+    <div class="cube-section">
+      <div class="cube-section-title">Spécialités</div>
+      <div class="cube-grid-row">
+        <div class="cube-tile blue" (click)="goTo('fmc')">Fewest Moves</div>
+        <div class="cube-tile red" (click)="goTo('oh')">One-Handed</div>
+        <div class="cube-tile white" (click)="goTo('clock')">Rubik’s Clock</div>
+      </div>
     </div>
   </div>
 </div>
