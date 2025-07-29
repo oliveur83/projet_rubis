@@ -73,7 +73,7 @@ export class AppComponent {
     this.router.navigate(['/AlgoOLL']);
   }
   goTo(event: string) {
-    this.router.navigate(['/AlgoOLL']); // Exemple : /epreuve/3x3
+    this.router.navigate([event]); // Exemple : /epreuve/3x3
   }
   activeSub: string | null = null;
 

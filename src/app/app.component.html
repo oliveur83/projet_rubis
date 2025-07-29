@@ -23,10 +23,10 @@
         <!-- 3x3 avec sous-catégories -->
         <div class="cube-tile orange" (click)="toggleSub('3x3')">3x3</div>
         <div class="sub-tile-list" *ngIf="activeSub === '3x3'">
-          <div class="sub-tile" (click)="goTo('3x3-debutant'); $event.stopPropagation()">Débutant</div>
-          <div class="sub-tile" (click)="goTo('3x3-f2l'); $event.stopPropagation()">F2L</div>
-          <div class="sub-tile" (click)="goTo('3x3-oll'); $event.stopPropagation()">OLL</div>
-          <div class="sub-tile" (click)="goTo('3x3-pll'); $event.stopPropagation()">PLL</div>
+          <div class="cube-tile orange" (click)="goTo('Algodebutant'); $event.stopPropagation()">Débutant</div>
+          <div class="cube-tile orange" (click)="goTo('AlgoF2l'); $event.stopPropagation()">F2L</div>
+          <div class="cube-tile orange" (click)="goTo('AlgoOLL'); $event.stopPropagation()">OLL</div>
+          <div class="cube-tile orange" (click)="goTo('AlgoPLL'); $event.stopPropagation()">PLL</div>
         </div>
 
         <div class="cube-tile yellow" (click)="goTo('4x4')">4x4</div>

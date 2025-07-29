@@ -1,0 +1,92 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9; /* Fond global doux */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Espacement uniforme entre les colonnes */
+    align-items: center; /* Alignement vertical centré */
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Ombre légère pour relief */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+  }
+  
+  .container:hover {
+    transform: translateY(-5px); /* Soulèvement subtil au survol */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Ombre renforcée */
+  }
+  
+  .column {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px; /* Espacement horizontal entre les colonnes */
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  pre {
+    background: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    color: #040404;
+    margin: 10px 0;
+    font-size: 4rem; /* Augmente la taille de la police */
+    line-height: 1.5; /* Améliore l'espacement entre les lignes */
+  }
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ff8000, #ffff00, #00ff00, #0000ff, #ff00ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    animation: glow 1.5s infinite alternate;
+  }
+  button {
+    background: linear-gradient(135deg, #6c63ff, #3b3b98);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(108, 99, 255, 0.3);
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #3b3b98, #6c63ff);
+    box-shadow: 0 6px 12px rgba(108, 99, 255, 0.5);
+    transform: scale(1.05); /* Agrandissement léger */
+  }
+  
+  .threejs-container {
+    height: calc(20vh);
+    width: 100%;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); /* Dégradé bleu doux */
+    border: 2px solid #90caf9; /* Bordure assortie */
+    border-radius: 10px;
+  }
+  
