@@ -20,7 +20,24 @@
   margin-bottom: 20px; /* Espace entre la scène et le tableau */
   box-sizing: border-box; /* Prend en compte la bordure dans la largeur totale */
 }
-
+ button {
+    background: linear-gradient(135deg, #6c63ff, #3b3b98);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(108, 99, 255, 0.3);
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #3b3b98, #6c63ff);
+    box-shadow: 0 6px 12px rgba(108, 99, 255, 0.5);
+    transform: scale(1.05); /* Agrandissement léger */
+  }
+  
 /* Tableau responsive */
 .table-responsive {
   width: 100%; /* Prend toute la largeur de l'écran */

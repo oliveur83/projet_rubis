@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Rubis3D } from '../../rubis3D';
-
+import { AuthService } from '../service/auth.service';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-algo-plus',
@@ -24,8 +24,12 @@ export class AlgoPlusComponent {
     { rank: 9, name: 'Algorithme I', creator: 'Créateur R', likes: 65 },
     { rank: 10, name: 'Algorithme J', creator: 'Créateur Q', likes: 60 },
   ];
-
-  constructor(private route: ActivatedRoute, private elementRef: ElementRef) {}
+  estconnecter = this.authService.estConnecte();
+  constructor(
+    private route: ActivatedRoute,
+    public authService: AuthService,
+    private elementRef: ElementRef
+  ) {}
   ngAfterViewInit(): void {
     const containerElements =
       this.elementRef.nativeElement.querySelectorAll('.threejs-container');

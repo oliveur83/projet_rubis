@@ -20,11 +20,10 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { AlgoProfilComponent } from './algo-profil/algo-profil.component';
 import { ChronometreRubisComponent } from './chronometre-rubis/chronometre-rubis.component';
 import { ProfilComponent } from './profil/profil.component';
-import { algoOLL } from './constant';
 
 export const routes: Routes = [
   //  { path: '', component: PrincipalComponent },
-  { path: '', component: ChronometreRubisComponent },
+  { path: '', component: PrincipalComponent },
   { path: 'Algodebutant', component: AlgodebutantComponent },
   { path: 'AlgoF2l', component: AlgoF2lComponent },
   { path: 'AlgoPLL', component: PllComponent },
