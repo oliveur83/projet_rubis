@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Rubis3D } from '../../rubis3D';
 import { AuthService } from '../service/auth.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-algo-plus',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './algo-plus.component.html',
   styleUrl: './algo-plus.component.css',
 })
@@ -24,6 +25,13 @@ export class AlgoPlusComponent {
     { rank: 9, name: 'Algorithme I', creator: 'Créateur R', likes: 65 },
     { rank: 10, name: 'Algorithme J', creator: 'Créateur Q', likes: 60 },
   ];
+
+  nouvelAlgo = {
+    name: '',
+    creator: 'tom',
+    likes: 0,
+  };
+
   estconnecter = this.authService.estConnecte();
   constructor(
     private route: ActivatedRoute,
@@ -44,5 +52,19 @@ export class AlgoPlusComponent {
   ngOnInit(): void {
     this.index = Number(this.route.snapshot.paramMap.get('id')); // Récupère l'index depuis l'URL
     console.log('Index reçu:', this.index);
+  }
+
+  ajouterAlgo() {
+    const nouvelObjet = {
+      rank: this.algorithms.length + 1,
+      name: this.nouvelAlgo.name,
+      creator: 'tom',
+      likes: 0,
+    };
+
+    this.algorithms.push(nouvelObjet);
+
+    // Réinitialiser le formulaire
+    this.nouvelAlgo = { name: '', creator: '', likes: 0 };
   }
 }

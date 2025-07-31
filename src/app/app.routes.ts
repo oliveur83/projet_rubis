@@ -3,7 +3,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { AlgoPlusComponent } from './algo-plus/algo-plus.component';
 
 import { AlgodebutantComponent } from './algodebutant/algodebutant.component';
-import { AlgoF2lComponent } from './algo-f2l/algo-f2l.component';
+import { F2lComponent } from './categories/f2l/f2l.component';
 import { OllComponent } from './categories/oll/oll.component';
 import { PllComponent } from './categories/pll/pll.component';
 import { Cube4x4Component } from './categories/cube4x4/cube4x4.component';
@@ -25,7 +25,7 @@ export const routes: Routes = [
   //  { path: '', component: PrincipalComponent },
   { path: '', component: PrincipalComponent },
   { path: 'Algodebutant', component: AlgodebutantComponent },
-  { path: 'AlgoF2l', component: AlgoF2lComponent },
+  { path: 'AlgoF2l', component: F2lComponent },
   { path: 'AlgoPLL', component: PllComponent },
   { path: 'AlgoOLL', component: OllComponent },
 

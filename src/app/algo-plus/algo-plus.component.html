@@ -20,8 +20,15 @@
       </tbody>
     </table>
   </div>
-  <div *ngIf="estconnecter">
-    <button >ajouter un algo</button>
-  </div>
+<div *ngIf="estconnecter">
+  <form (ngSubmit)="ajouterAlgo()" #algoForm="ngForm">
+    <div>
+      <label>Nom de l'algorithme :</label>
+      <input type="text" name="name" [(ngModel)]="nouvelAlgo.name" required />
+    </div>
+    <button type="submit" [disabled]="!algoForm.form.valid">Ajouter un algo</button>
+  </form>
+</div>
+
 
 </div>
