@@ -1,15 +1,16 @@
 <div class="header">
   <div class="menu-title" (click)="toggleMenu()">🧊 Épreuves WCA</div>
 
-  <div class="account" (click)="toggleDropdown()">
-    <span>Compte</span>
-    <i class="account-icon">👤</i>
-    <div class="dropdown" *ngIf="isDropdownOpen">
-      <a (click)="Connexion()" class="dropdown-item">Connexion</a>
-      <a href="#" class="dropdown-item">Déconnexion</a>
-      <a (click)="algoprofil()" class="dropdown-item">Mes algos</a>
-    </div>
+<div class="account" [ngClass]="isConnected ? 'connected' : 'disconnected'" (click)="toggleDropdown()">
+  <span>{{ isConnected ? 'Mon Compte' : 'Compte' }}</span>
+  <i class="account-icon">👤</i>
+  <div class="dropdown" *ngIf="isDropdownOpen">
+    <a *ngIf="!isConnected" (click)="Connexion()" class="dropdown-item">Connexion</a>
+    <a *ngIf="isConnected" (click)="Deconnexion()" class="dropdown-item">Déconnexion</a>
+    <a *ngIf="isConnected" (click)="algoprofil()" class="dropdown-item">Mes algos</a>
   </div>
+</div>
+
 </div>
 
 <div class="menu-wrapper" *ngIf="ismenu">

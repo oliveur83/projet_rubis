@@ -21,8 +21,8 @@ export class ConnexionComponent {
 
   onSubmit() {
     if (this.username == 'admin' && this.password == 'admin') {
-      this.router.navigate(['/profil']);
       this.authService.connecter();
+      this.router.navigate(['/profil']);
     } else {
       console.log('Le formulaire est invalide');
       console.log(this.password, this.username);

@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { Rubis3D } from '../rubis3D';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../app/service/auth.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,8 +14,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   isDropdownOpen = false;
-
-  constructor(private router: Router, private elementRef: ElementRef) {}
+  isConnected = this.authService.estConnecte();
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private elementRef: ElementRef
+  ) {}
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -79,5 +85,14 @@ export class AppComponent {
 
   toggleSub(name: string) {
     this.activeSub = this.activeSub === name ? null : name;
+  }
+  Deconnexion() {
+    this.authService.deconnecter();
+  }
+  ngOnInit() {
+    // On s'abonne à l'état de connexion
+    this.authService.estConnecte$.subscribe((etat) => {
+      this.isConnected = etat;
+    });
   }
 }

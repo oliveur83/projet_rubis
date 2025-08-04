@@ -1,23 +1,24 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public jeSuisConnecte: boolean = false;
+  private estConnecteSubject = new BehaviorSubject<boolean>(false);
 
-  constructor() {}
+  // Observable que les composants peuvent écouter
+  estConnecte$ = this.estConnecteSubject.asObservable();
 
   connecter() {
-    this.jeSuisConnecte = true;
+    this.estConnecteSubject.next(true);
   }
 
   deconnecter() {
-    this.jeSuisConnecte = false;
+    this.estConnecteSubject.next(false);
   }
 
   estConnecte(): boolean {
-    return this.jeSuisConnecte;
+    return this.estConnecteSubject.getValue();
   }
 }
