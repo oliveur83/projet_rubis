@@ -4,18 +4,25 @@ import { Rubis3D } from '../rubis3D';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../app/service/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  UtilisateurService,
+  Utilisateur,
+} from './service/utillisateur.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   isDropdownOpen = false;
   isConnected = this.authService.estConnecte();
+  utilisateurs: Utilisateur[] = [];
   constructor(
+    private utilisateurService: UtilisateurService,
     private router: Router,
     public authService: AuthService,
     private elementRef: ElementRef
@@ -93,6 +100,10 @@ export class AppComponent {
     // On s'abonne à l'état de connexion
     this.authService.estConnecte$.subscribe((etat) => {
       this.isConnected = etat;
+    });
+    this.utilisateurService.getUtilisateurs().subscribe((data) => {
+      this.utilisateurs = data;
+      console.log('Utilisateurs récupérés :', this.utilisateurs);
     });
   }
 }

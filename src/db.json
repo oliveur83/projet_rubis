@@ -1,7 +1,67 @@
 {
-    "ReadAlgo": [
-      { "id": 1, "algo": "Premier post" },
-      { "id": 2, "algo": "Deuxième post" }
-    ]
-  }
-  
+  "participants": [
+    {
+      "id": 1,
+      "nom": "Alice Martin",
+      "bio": "Championne régionale passionnée de speedcubing depuis l'âge de 12 ans.",
+      "records": [
+        { "categorie": "2x2", "single": "1.01s", "average": "1.85s" },
+        { "categorie": "3x3", "single": "6.78s", "average": "9.22s" },
+        { "categorie": "4x4", "single": "42.15s", "average": "48.30s" },
+        { "categorie": "3x3 OH", "single": "15.34s", "average": "17.10s" }
+      ],
+      "classement": {
+        "national": "2ème",
+        "regional": "1ère",
+        "mondial": "87ème"
+      },
+      "progression": {
+        "labels": ["Janvier", "Février", "Mars", "Avril", "Mai"],
+        "3x3": {
+          "single": [15.4, 13.2, 12.5, 10.8, 9.7],
+          "average": [17.5, 16.8, 14.9, 13.7, 12.4]
+        },
+        "2x2": {
+          "single": [2.1, 1.8, 1.7, 1.5, 1.4],
+          "average": [2.5, 2.2, 2.0, 1.8, 1.7]
+        }
+      }
+    }
+  ],
+  "competitions": [
+    {
+      "id": 1,
+      "nom": "Open de Paris 2025",
+      "date": "2025-07-15",
+      "lieu": "Paris",
+      "participantsIds": [1]
+    },
+    {
+      "id": 2,
+      "nom": "Lyon Speedcubing Cup",
+      "date": "2025-08-10",
+      "lieu": "Lyon",
+      "participantsIds": []
+    }
+  ],
+  "resultats": [
+    {
+      "id": 1,
+      "participantId": 1,
+      "competitionId": 1,
+      "categorie": "3x3",
+      "single": "8.32s",
+      "average": "10.12s",
+      "classement": 2
+    },
+    {
+      "id": 2,
+      "participantId": 1,
+      "competitionId": 1,
+      "categorie": "2x2",
+      "single": "1.45s",
+      "average": "1.95s",
+      "classement": 1
+    }
+  ]
+}
